@@ -1,0 +1,548 @@
+openapi: 3.0.0
+info:
+  description: "Document storage service V1"
+  version: "1.0.0"
+  title: " de.fiduciagad.document.storage.be.v1"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "Serhii.Yermakov.Extern@fiduciagad.de"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+servers:
+  - url: "/rest/de.fiduciagad.document-storage-be-v1.api.v1.DocumentStorageApi"
+paths:
+  /file:
+    post:
+      summary: uploadFile
+      operationId: uploadFile
+      parameters:
+        - name: fileName
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: documentId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: ident
+          in: query
+          required: false
+          description: "entityId from DocumentDTO"
+          schema:
+            type: string
+        - name: iban
+          in: query
+          required: false
+          description: "umsatzKontoIban from DocumentDTO"
+          schema:
+            type: string
+        - name: entryPoint
+          in: query
+          required: true
+          description: "EntryPoint type"
+          schema:
+            type: string
+            enum:
+              - UMSATZANZEIGE
+              - VERTRAGSMANAGER
+              - FILE_UPLOAD
+              - PHOTO
+              - RTP
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  description: file
+                  format: binary
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/FileDTO'
+    get:
+      summary: downloadFile
+      operationId: downloadFile
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+    delete:
+      summary: deleteFile
+      operationId: deleteFile
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+  /file/list:
+    get:
+      summary: getFileList
+      operationId: getFileList
+      parameters:
+        - name: documentId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileDTO'
+  /documents:
+    post:
+      summary: getDocumentsByEntityId
+      operationId: getDocumentsByEntityId
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentDTO'
+  /document:
+    post:
+      summary: createDocument
+      operationId: createDocument
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentDTO'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDTO'
+    get:
+      summary: getDocument
+      operationId: getDocument
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDTO'
+    put:
+      summary: updateDocument
+      operationId: updateDocument
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentDTO'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDTO'
+    delete:
+      summary: deleteDocuments
+      operationId: deleteDocuments
+      parameters:
+        - name: documentIds
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        200:
+          description: OK
+  /document/list:
+    post:
+      summary: getDocumentList
+      operationId: getDocumentList
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentFilterDTO'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDTOList'
+  /category:
+    post:
+      summary: createCategory
+      operationId: createCategory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryDTO'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDTO'
+    get:
+      summary: getCategory
+      operationId: getCategory
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDTO'
+    put:
+      summary: updateCategory
+      operationId: updateCategory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryDTO'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDTO'
+    delete:
+      summary: deleteCategory
+      operationId: deleteCategory
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+  /category/list:
+    get:
+      summary: getCategoryList
+      operationId: getCategoryList
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryDTOList'
+  /feature-toggles:
+    get:
+      summary: "getFeatureToggles"
+      operationId: "getFeatureToggles"
+      parameters:
+        - in: query
+          name: ftIds
+          description: One or more IDs
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+          examples:
+            oneId:
+              summary: Example of a single FeatureToogle ID
+              value: [firstId]   # ?ftIds=firstId
+            multipleIds:
+              summary: Example of multiple FeatureToogle IDs
+              value: [firstId, secondIds]   # ?ftIds=firstId,secondIds
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureTogglesResponse'
+      deprecated: false
+  /logo-info/list:
+    get:
+      summary: getLogoInfosFor
+      operationId: getLogoInfosFor
+      parameters:
+        - name: companyName
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogoInfoDTO'
+  /user-agreements/store-documents/is-agree:
+    get:
+      summary: isAgreeStoreLoseDocuments
+      operationId: isAgreeStoreLoseDocuments
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /user-agreements/store-documents/set-agreement:
+    post:
+      summary: setStoreLoseDocumentsAgreement
+      operationId: setStoreLoseDocumentsAgreement
+      parameters:
+        - name: isAgree
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        200:
+          description: OK
+components:
+  schemas:
+    UploadFileResponse:
+      type: object
+      properties:
+        fileDownloadUri:
+          type: string
+        fileName:
+          type: string
+        fileType:
+          type: string
+        size:
+          type: integer
+          format: int64
+    CategoryDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        parentId:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+        count:
+          type: integer
+          format: int64
+    CategoryDTOList:
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryDTO'
+        pageSize:
+          type: integer
+        pageNumber:
+          type: integer
+        total:
+          type: integer
+    FileDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        documentId:
+          type: string
+        fileName:
+          type: string
+        fileType:
+          type: string
+        size:
+          type: integer
+          format: int64
+        errorMessage:
+          type: string
+        errorStatus:
+          type: integer
+          format: int32
+    DocumentType:
+      enum:
+        - Rechnung
+        - Vertrag
+        - Kundigungsschreiben
+        - Reklamationsbrief
+        - Sonstiges
+    DocumentDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        entityId:
+          type: string
+          description: 'Equal ident (some kind like transactionId)'
+        categoryId:
+          type: string
+        documentType:
+          $ref: '#/components/schemas/DocumentType'
+        title:
+          type: string
+        date:
+          type: string
+          format: date-time
+        documentNumber:
+          type: string
+        umsatzSchluessel:
+          type: string
+        umsatzKontoIban:
+          type: string
+          description: 'IBAN'
+        fileIdList:
+          type: array
+          items:
+            type: string
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+    DocumentDTOList:
+      type: object
+      properties:
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentDTO'
+        pageSize:
+          type: integer
+        pageNumber:
+          type: integer
+        total:
+          type: integer
+          format: int64
+    DocumentFilterDTO:
+      type: object
+      properties:
+        categoryId:
+          type: string
+        sortBy:
+          type: string
+          enum:
+            - CATEGORY_NAME
+            - DOCUMENT_TITLE
+            - DOCUMENT_DATE
+        sortOrder:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        freeTextSearch:
+          type: string
+        advancedSearch:
+          $ref: '#/components/schemas/AdvancedSearch'
+        pageSize:
+          type: integer
+        pageNumber:
+          type: integer
+    AdvancedSearch:
+      type: object
+      properties:
+        documentTitle:
+          type: string
+        categoryName:
+          type: string
+        dateFrom:
+          type: string
+          format: date-time
+        dateTo:
+          type: string
+          format: date-time
+    FeatureTogglesResponse:
+      type: object
+      properties:
+        roFeatureToggles:
+          $ref: '#/components/schemas/ROFeatureToggles'
+        responseStatus:
+          $ref: '#/components/schemas/ResponseStatus'
+    ROFeatureToggles:
+      title: ROFeatureToggles
+      type: object
+      additionalProperties:
+        type: boolean
+    ResponseStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - OK
+            - NOT_ALLOWED_FEATURE
+            - EXTERNAL_SERVICE_FAILED
+        statusMsg:
+          type: string
+    LogoInfoDTO:
+      type: object
+      properties:
+        company:
+          type: string
+        queryID:
+          type: string
+        status:
+          type: string
+        url:
+          type: string
