@@ -1,6 +1,7 @@
 package com.example.client;
 
 import com.example.client.client.PublicFeignClient;
+import com.example.client.client.RestClient;
 import com.example.client.service.TestExternalService;
 import com.utils.retryLibrary.TestRetryLibrary;
 import com.utils.retryLibrary.aspect.RetryClientAspect;
@@ -21,6 +22,9 @@ public class ClientApplication implements CommandLineRunner {
     @Autowired
     PublicFeignClient feignClient;
 
+    @Autowired
+    RestClient restClient;
+
     public static void main(String[] args) {
         SpringApplication.run(ClientApplication.class, args);
     }
@@ -34,6 +38,6 @@ public class ClientApplication implements CommandLineRunner {
         System.out.println("-------------------");
         System.out.println(feignClient.getRequest());
         System.out.println("-------------------");
-        System.out.println(feignClient.getRequest2());
+        System.out.println(restClient.getRequest());
     }
 }
