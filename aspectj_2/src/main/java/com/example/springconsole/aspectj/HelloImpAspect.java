@@ -9,4 +9,9 @@ public class HelloImpAspect {
     public void callFromFoo() {
         System.out.println("--- @Aspect ---");
     }
+
+    @Before("call(* org.slf4j.Logger.info(..))")
+    public void loggerInfo() {
+        System.out.println("--- @Aspect for logger info ---");
+    }
 }
