@@ -1,6 +1,5 @@
 package com.example.mandator.interceptor;
 
-import com.example.mandator.MandatorTest;
 import org.hibernate.EmptyInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,14 +11,14 @@ import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 
 @Component
 @Scope("singleton")
 public class JpaInterceptor extends EmptyInterceptor {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MandatorTest.class);
-
-    private boolean isMandaten;
-    private static final String MANDATEN = "name";
+    private static final Logger LOGGER = LoggerFactory.getLogger(JpaInterceptor.class);
+    private List<String> mandatens;
+    private boolean isMandatenQuery;
     private HashMap<String, Boolean> classCashe = new HashMap<>();
 
     @Override
@@ -38,9 +37,11 @@ public class JpaInterceptor extends EmptyInterceptor {
                             column = (Column) a;
                     }
 
-                    if (column != null && column.name().equals(MANDATEN)) {
-                        mandatenTrigger = true;
-                        break;
+                    for (String mandaten : mandatens) {
+                        if (column != null && column.name().equals(mandaten)) {
+                            mandatenTrigger = true;
+                            break;
+                        }
                     }
                 }
             } catch (Exception throwables) {
@@ -48,15 +49,25 @@ public class JpaInterceptor extends EmptyInterceptor {
             classCashe.put(entityName, mandatenTrigger);
         }
 
-        if (mandatenTrigger && !isMandaten) {
-            LOGGER.error("Mandaten class require MANDATENID in query");
+        if (mandatenTrigger && !isMandatenQuery) {
+            LOGGER.warn("***   Mandaten class require MANDATENID in query   ***");
         }
         return super.getEntity(entityName, id);
     }
 
     @Override
     public String onPrepareStatement(String sql) {
-        isMandaten = sql.contains("." + MANDATEN + "=");
+        isMandatenQuery = false;
+        for (String mandaten : mandatens) {
+            if (sql.contains("." + mandaten + "=")) {
+                isMandatenQuery = true;
+                break;
+            }
+        }
         return super.onPrepareStatement(sql);
+    }
+
+    public void setMandatens(List<String> mandatens) {
+        this.mandatens = mandatens;
     }
 }
