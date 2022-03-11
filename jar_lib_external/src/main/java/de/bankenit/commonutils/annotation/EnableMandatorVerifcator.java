@@ -1,7 +1,7 @@
-package com.example.mandator.annotation;
+package de.bankenit.commonutils.annotation;
 
-import com.example.mandator.configuration.AppConfiguration;
-import com.example.mandator.interceptor.JpaInterceptor;
+import de.bankenit.commonutils.configuration.AppConfiguration;
+import de.bankenit.commonutils.interceptor.JpaInterceptor;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;

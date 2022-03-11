@@ -1,6 +1,6 @@
-package com.example.mandator.configuration;
+package de.bankenit.commonutils.configuration;
 
-import com.example.mandator.interceptor.JpaInterceptor;
+import de.bankenit.commonutils.interceptor.JpaInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 @Configuration
-@ComponentScan(basePackages = {"com.example.mandator"})
+@ComponentScan(basePackages = {"de.bankenit.commonutils"})
 public class AppConfiguration implements HibernatePropertiesCustomizer {
     /*
         mandatens - list of mandaten names. like mandatenid, rzbk etc
      */
-    @Value("#{'${mandatens}'.split(',')}")
+    @Value("#{'${mandatens:MANDANTENID}'.split(',')}")
     private List<String> mandatens;
 
     @Autowired

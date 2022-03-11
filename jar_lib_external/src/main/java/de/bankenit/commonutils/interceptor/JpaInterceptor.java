@@ -1,4 +1,4 @@
-package com.example.mandator.interceptor;
+package de.bankenit.commonutils.interceptor;
 
 import org.hibernate.EmptyInterceptor;
 import org.slf4j.Logger;
@@ -19,13 +19,13 @@ public class JpaInterceptor extends EmptyInterceptor {
     private static final Logger LOGGER = LoggerFactory.getLogger(JpaInterceptor.class);
     private List<String> mandatens;
     private boolean isMandatenQuery;
-    private HashMap<String, Boolean> classCashe = new HashMap<>();
+    private HashMap<String, Boolean> classCache = new HashMap<>();
 
     @Override
     public Object getEntity(String entityName, Serializable id) {
         boolean mandatenTrigger = false;
-        if (classCashe.containsKey(entityName)) {
-            mandatenTrigger = classCashe.get(entityName);
+        if (classCache.containsKey(entityName)) {
+            mandatenTrigger = classCache.get(entityName);
         } else {
             try {
                 Class cls = Class.forName(entityName);
@@ -38,7 +38,7 @@ public class JpaInterceptor extends EmptyInterceptor {
                     }
 
                     for (String mandaten : mandatens) {
-                        if (column != null && column.name().equals(mandaten)) {
+                        if (column != null && (column.name().equals(mandaten.toLowerCase()) || column.name().equals(mandaten.toUpperCase()))) {
                             mandatenTrigger = true;
                             break;
                         }
@@ -46,7 +46,7 @@ public class JpaInterceptor extends EmptyInterceptor {
                 }
             } catch (Exception throwables) {
             }
-            classCashe.put(entityName, mandatenTrigger);
+            classCache.put(entityName, mandatenTrigger);
         }
 
         if (mandatenTrigger && !isMandatenQuery) {
@@ -59,7 +59,7 @@ public class JpaInterceptor extends EmptyInterceptor {
     public String onPrepareStatement(String sql) {
         isMandatenQuery = false;
         for (String mandaten : mandatens) {
-            if (sql.contains("." + mandaten + "=")) {
+            if (sql.contains("." + mandaten.toLowerCase() + "=") || sql.contains("." + mandaten.toUpperCase() + "=")) {
                 isMandatenQuery = true;
                 break;
             }
