@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtRequestFilter jwtRequestFilter;
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder customPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -48,6 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder authentication) throws Exception {
-        authentication.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
+        authentication.userDetailsService(jwtUserDetailsService).passwordEncoder(customPasswordEncoder());
     }
 }
