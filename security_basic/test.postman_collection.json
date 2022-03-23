@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "f2956e86-03a4-4916-a5c9-a4df4e39a41d",
+		"name": "test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "basic auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8085/login?username=admin&password=fff",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "fff"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
