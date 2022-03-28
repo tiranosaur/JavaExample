@@ -1,4 +1,4 @@
-package com.vojtechruzicka.springbootadminclient;
+package com.example.springbootadminclient;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

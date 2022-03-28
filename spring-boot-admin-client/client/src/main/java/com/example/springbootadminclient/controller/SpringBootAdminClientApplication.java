@@ -1,4 +1,4 @@
-package com.vojtechruzicka.springbootadminclient;
+package com.example.springbootadminclient.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
