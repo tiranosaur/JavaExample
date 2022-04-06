@@ -1,4 +1,4 @@
-package com.example.springconsole;
+package com.example.client3j;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -11,7 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringConsoleApplication implements CommandLineRunner {
+public class Client3jApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(SpringConsoleApplication.class, args);
     }

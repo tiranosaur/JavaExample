@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>com.example</groupId>
-    <artifactId>springConsole</artifactId>
+    <artifactId>client3j</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springConsole</name>
-    <description>springConsole</description>
+    <name>client3j</name>
+    <description>client3j</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -141,7 +141,7 @@
                                     <version>1.0-SNAPSHOT</version>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/generated-sources/delombok/com/example/springconsole/</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/generated-sources/delombok/com/example/client3j/</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                             <includes>**/aspect/*.aj</includes>
