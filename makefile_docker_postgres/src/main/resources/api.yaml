@@ -1,0 +1,43 @@
+openapi: "3.0.0"
+info:
+  description: "EVA Shop"
+  version: "4"
+  title: "com.example.eva"
+servers:
+  - url: "/rest/"
+paths:
+  /shop/product:
+    get:
+      tags:
+        - ShopService
+      summary: getProductListByFilter
+      description: Get product list by filter
+      operationId: getProductListByFilter
+      parameters:
+        - name: nameFilter
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDTO'
+components:
+  schemas:
+    ProductDTO:
+      type: object
+      required:
+        - product
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
