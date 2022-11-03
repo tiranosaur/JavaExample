@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: MyApp
+
+server:
+  port: 8081
+
+logging:
+  level:
+    com.example.springdemo.service: debug
+    com.example.springdemo.controller: debug
