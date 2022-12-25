@@ -6,7 +6,6 @@ import com.example.springdemo.HelloServiceGrpc;
 import io.grpc.stub.StreamObserver;
 
 public class HelloServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
-
     @Override
     public void hello(Hello.HelloRequest request, StreamObserver<Hello.HelloResponse> responseObserver) {
         System.out.println("Request received from client:\n" + request);
