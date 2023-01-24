@@ -8,9 +8,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
 
 @Slf4j
@@ -30,6 +28,7 @@ public class PdfService {
     private final String INFO_REGEX = "%%%Info%%%";
     private final String NAME_REGEX = "%%%Name%%%";
     private final String URL_REGEX = "%%%URL%%%";
+    private final String FONT_REGEX = "%%%font%%%";
 
     @SneakyThrows
     public ByteArrayOutputStream createPDF(String filePath, String url, String lang) {
@@ -38,6 +37,7 @@ public class PdfService {
         Resource resource = resourcePatternResolver.getResource(filePath);
         String html = Files.readString(resource.getFile().toPath());
         html = html.replace(URL_REGEX, url);
+        html = html.replace(FONT_REGEX, getClass().getClassLoader().getResource("wow.ttf").toString());
         ByteArrayOutputStream renderedPdfBytes = new ByteArrayOutputStream();
         PdfRendererBuilder builder = new PdfRendererBuilder();
         builder.withHtmlContent(html, "/");
