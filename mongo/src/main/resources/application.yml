@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+#  datasource:
+#    password: Pass123
+#    username: admin
+#    url: jdbc:localhost:27016
+#    driver-class-name: com.mongodb.Mongo
+#
+  data:
+    mongodb:
+      host: localhost
+      port: 27016
+      password: Pass123
+      username: admin
+      authentication-database: admin
+      database: local
