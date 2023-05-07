@@ -5,9 +5,9 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interface
  */
 public interface FizzBuzzExceptionSafeOutputStrategy {
 
-	/**
-	 * @param output
-	 */
-	public void output(String output);
+    /**
+     * @param output String
+     */
+    void output(String output);
 
 }

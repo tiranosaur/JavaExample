@@ -15,41 +15,41 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class FizzStringPrinter implements StringPrinter {
 
-	private final SystemOutFizzBuzzOutputStrategyFactory _systemOutFizzBuzzOutputStrategyFactory;
+    private final SystemOutFizzBuzzOutputStrategyFactory systemOutFizzBuzzOutputStrategyFactory;
 
-	private final FizzStringReturnerFactory _fizzStringReturnerFactory;
+    private final FizzStringReturnerFactory fizzStringReturnerFactory;
 
-	/**
-	 * @param _fizzStringReturnerFactory FizzStringReturnerFactory
-	 * @param _systemOutFizzBuzzOutputStrategyFactory SystemOutFizzBuzzOutputStrategyFactory
-	 */
-	@Autowired
-	public FizzStringPrinter(final FizzStringReturnerFactory _fizzStringReturnerFactory,
-			final SystemOutFizzBuzzOutputStrategyFactory _systemOutFizzBuzzOutputStrategyFactory) {
-		super();
-		this._fizzStringReturnerFactory = _fizzStringReturnerFactory;
-		this._systemOutFizzBuzzOutputStrategyFactory = _systemOutFizzBuzzOutputStrategyFactory;
-	}
+    /**
+     * @param fizzStringReturnerFactory              FizzStringReturnerFactory
+     * @param systemOutFizzBuzzOutputStrategyFactory SystemOutFizzBuzzOutputStrategyFactory
+     */
+    @Autowired
+    public FizzStringPrinter(final FizzStringReturnerFactory fizzStringReturnerFactory,
+                             final SystemOutFizzBuzzOutputStrategyFactory systemOutFizzBuzzOutputStrategyFactory) {
+        super();
+        this.fizzStringReturnerFactory = fizzStringReturnerFactory;
+        this.systemOutFizzBuzzOutputStrategyFactory = systemOutFizzBuzzOutputStrategyFactory;
+    }
 
-	/**
-	 * @return void
-	 */
-	public void print() {
-		final StringStringReturner myFizzStringReturner = this._fizzStringReturnerFactory
-			.createStringStringReturner();
-		final FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter myOutputAdapter =
-				new FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter(
-						this._systemOutFizzBuzzOutputStrategyFactory.createOutputStrategy());
+    /**
+     * @return void
+     */
+    public void print() {
+        final StringStringReturner myFizzStringReturner = this.fizzStringReturnerFactory
+                .createStringStringReturner();
+        final FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter myOutputAdapter =
+                new FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter(
+                        this.systemOutFizzBuzzOutputStrategyFactory.createOutputStrategy());
 
-		myOutputAdapter.output(myFizzStringReturner.getReturnString());
-	}
+        myOutputAdapter.output(myFizzStringReturner.getReturnString());
+    }
 
-	/**
-	 * @param value
-	 */
-	@Override
-	public void printValue(final Object value) {
-		this.print();
-	}
+    /**
+     * @param value
+     */
+    @Override
+    public void printValue(final Object value) {
+        this.print();
+    }
 
 }

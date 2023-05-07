@@ -7,9 +7,9 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
  */
 public interface IntegerStringReturnerFactory {
 
-	/**
-	 * @return
-	 */
-	public IntegerStringReturner createIntegerStringReturner();
+    /**
+     * @return IntegerStringReturner
+     */
+    IntegerStringReturner createIntegerStringReturner();
 
 }

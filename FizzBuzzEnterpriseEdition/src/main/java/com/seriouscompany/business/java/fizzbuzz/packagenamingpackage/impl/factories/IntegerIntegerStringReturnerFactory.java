@@ -11,26 +11,25 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
  * Factory for IntegerIntegerStringReturner
  */
 @Service
-public class IntegerIntegerStringReturnerFactory implements
-		IntegerStringReturnerFactory {
+public class IntegerIntegerStringReturnerFactory implements IntegerStringReturnerFactory {
 
-	private final IntegerIntegerStringReturner _integerIntegerStringReturner;
+    private final IntegerIntegerStringReturner integerIntegerStringReturner;
 
-	/**
-	 * @param _integerIntegerStringReturner IntegerIntegerStringReturner
-	 */
-	@Autowired
-	public IntegerIntegerStringReturnerFactory(final IntegerIntegerStringReturner _integerIntegerStringReturner) {
-		super();
-		this._integerIntegerStringReturner = _integerIntegerStringReturner;
-	}
+    /**
+     * @param integerIntegerStringReturner IntegerIntegerStringReturner
+     */
+    @Autowired
+    public IntegerIntegerStringReturnerFactory(final IntegerIntegerStringReturner integerIntegerStringReturner) {
+        super();
+        this.integerIntegerStringReturner = integerIntegerStringReturner;
+    }
 
-	/**
-	 * @return IntegerStringReturner
-	 */
-	@Override
-	public IntegerStringReturner createIntegerStringReturner() {
-		return this._integerIntegerStringReturner;
-	}
+    /**
+     * @return IntegerStringReturner
+     */
+    @Override
+    public IntegerStringReturner createIntegerStringReturner() {
+        return this.integerIntegerStringReturner;
+    }
 
 }

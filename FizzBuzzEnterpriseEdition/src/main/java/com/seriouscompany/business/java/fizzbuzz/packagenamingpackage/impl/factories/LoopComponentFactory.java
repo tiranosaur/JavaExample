@@ -14,54 +14,52 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.loop.
 @Service
 public class LoopComponentFactory {
 
-	private final LoopCondition _loopCondition;
+    private final LoopCondition loopCondition;
 
-	private final LoopInitializer _loopInitializer;
+    private final LoopInitializer loopInitializer;
 
-	private final LoopStep _loopStep;
+    private final LoopStep loopStep;
 
-	/**
-	 * @param _loopCondition LoopCondition
-	 * @param _loopInitializer LoopInitializer
-	 * @param _loopStep LoopStep
-	 */
-	@Autowired
-	public LoopComponentFactory(final LoopCondition _loopCondition, final LoopInitializer _loopInitializer,
-			final LoopStep _loopStep) {
-		super();
-		this._loopCondition = _loopCondition;
-		this._loopInitializer = _loopInitializer;
-		this._loopStep = _loopStep;
-	}
+    /**
+     * @param loopCondition   LoopCondition
+     * @param loopInitializer LoopInitializer
+     * @param loopStep        LoopStep
+     */
+    @Autowired
+    public LoopComponentFactory(final LoopCondition loopCondition, final LoopInitializer loopInitializer, final LoopStep loopStep) {
+        super();
+        this.loopCondition = loopCondition;
+        this.loopInitializer = loopInitializer;
+        this.loopStep = loopStep;
+    }
 
-	/**
-	 * @return LoopCondition
-	 */
-	public LoopCondition createLoopCondition() {
-		return this._loopCondition;
-	}
+    /**
+     * @return LoopCondition
+     */
+    public LoopCondition createLoopCondition() {
+        return this.loopCondition;
+    }
 
-	/**
-	 * @return LoopInitializer
-	 */
-	public LoopInitializer createLoopInitializer() {
-		return this._loopInitializer;
-	}
+    /**
+     * @return LoopInitializer
+     */
+    public LoopInitializer createLoopInitializer() {
+        return this.loopInitializer;
+    }
 
-	/**
-	 * @param nLoopFinalValue int
-	 * @return LoopFinalizer
-	 */
-	public LoopFinalizer createLoopFinalizer(final int nLoopFinalValue) {
-		final LoopFinalizer myLoopFinalizer = new LoopFinalizer(nLoopFinalValue);
-		return myLoopFinalizer;
-	}
+    /**
+     * @param nLoopFinalValue int
+     * @return LoopFinalizer
+     */
+    public LoopFinalizer createLoopFinalizer(final int nLoopFinalValue) {
+        return new LoopFinalizer(nLoopFinalValue);
+    }
 
-	/**
-	 * @return LoopStep
-	 */
-	public LoopStep createLoopStep() {
-		return this._loopStep;
-	}
+    /**
+     * @return LoopStep
+     */
+    public LoopStep createLoopStep() {
+        return this.loopStep;
+    }
 
 }

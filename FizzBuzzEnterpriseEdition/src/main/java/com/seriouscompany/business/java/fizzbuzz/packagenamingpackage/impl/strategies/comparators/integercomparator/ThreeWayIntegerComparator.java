@@ -17,13 +17,13 @@ public final class ThreeWayIntegerComparator {
 	 * @param nSecondInteger int
 	 * @return ThreeWayIntegerComparisonResult
 	 */
-	public static ThreeWayIntegerComparisonResult Compare(final int nFirstInteger, final int nSecondInteger) {
+	public static ThreeWayIntegerComparisonResult compare(final int nFirstInteger, final int nSecondInteger) {
 		if (nFirstInteger == nSecondInteger) {
-			return ThreeWayIntegerComparisonResult.FirstEqualsSecond;
+			return ThreeWayIntegerComparisonResult.FIRST_EQUALS_SECOND;
 		} else if (nFirstInteger < nSecondInteger) {
-			return ThreeWayIntegerComparisonResult.FirstIsLessThanSecond;
+			return ThreeWayIntegerComparisonResult.FIRST_IS_LESS_THAN_SECOND;
 		} else if (nFirstInteger > nSecondInteger) {
-			return ThreeWayIntegerComparisonResult.FirstIsGreaterThanSecond;
+			return ThreeWayIntegerComparisonResult.FIRST_IS_GREATER_THAN_SECOND;
 		} else {
 			// If the integers cannot be compared, then something is seriously wrong with the numbers.
 			throw new UnsupportedOperationException(Constants.THE_INTEGERS_COULD_NOT_BE_COMPARED);

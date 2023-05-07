@@ -11,26 +11,25 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
  * Factory for NewLineStringReturner
  */
 @Service
-public class NewLineStringReturnerFactory implements
-		StringStringReturnerFactory {
+public class NewLineStringReturnerFactory implements StringStringReturnerFactory {
 
-	private final NewLineStringReturner _newlineStringReturner;
+    private final NewLineStringReturner newlineStringReturner;
 
-	/**
-	 * @param _newlineStringReturner NewLineStringReturner
-	 */
-	@Autowired
-	public NewLineStringReturnerFactory(final NewLineStringReturner _newlineStringReturner) {
-		super();
-		this._newlineStringReturner = _newlineStringReturner;
-	}
+    /**
+     * @param newlineStringReturner NewLineStringReturner
+     */
+    @Autowired
+    public NewLineStringReturnerFactory(final NewLineStringReturner newlineStringReturner) {
+        super();
+        this.newlineStringReturner = newlineStringReturner;
+    }
 
-	/**
-	 * @return StringStringReturner
-	 */
-	@Override
-	public StringStringReturner createStringStringReturner() {
-		return this._newlineStringReturner;
-	}
+    /**
+     * @return StringStringReturner
+     */
+    @Override
+    public StringStringReturner createStringStringReturner() {
+        return this.newlineStringReturner;
+    }
 
 }

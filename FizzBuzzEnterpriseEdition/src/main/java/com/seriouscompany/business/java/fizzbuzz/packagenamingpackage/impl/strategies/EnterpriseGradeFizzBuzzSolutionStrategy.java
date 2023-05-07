@@ -14,26 +14,26 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class EnterpriseGradeFizzBuzzSolutionStrategy implements FizzBuzzSolutionStrategy {
 
-	private final LoopPayloadExecution _loopPayloadExecution;
+    private final LoopPayloadExecution loopPayloadExecution;
 
-	/**
-	 * @param _loopPayloadExecution LoopPayloadExecution
-	 */
-	@Autowired
-	public EnterpriseGradeFizzBuzzSolutionStrategy(final LoopPayloadExecution _loopPayloadExecution) {
-		super();
-		this._loopPayloadExecution = _loopPayloadExecution;
-	}
+    /**
+     * @param loopPayloadExecution LoopPayloadExecution
+     */
+    @Autowired
+    public EnterpriseGradeFizzBuzzSolutionStrategy(final LoopPayloadExecution loopPayloadExecution) {
+        super();
+        this.loopPayloadExecution = loopPayloadExecution;
+    }
 
-	/**
-	 * @param nFizzBuzzUpperLimit int
-	 * @return void
-	 */
-	@Override
-	public void runSolution(final int nFizzBuzzUpperLimit) {
-		final LoopContext loopContext = new LoopContext(nFizzBuzzUpperLimit);
-		final LoopRunner loopRunner = new LoopRunner(loopContext, loopContext, this._loopPayloadExecution);
-		loopRunner.runLoop();
-	}
+    /**
+     * @param nFizzBuzzUpperLimit int
+     * @return void
+     */
+    @Override
+    public void runSolution(final int nFizzBuzzUpperLimit) {
+        final LoopContext loopContext = new LoopContext(nFizzBuzzUpperLimit);
+        final LoopRunner loopRunner = new LoopRunner(loopContext, loopContext, this.loopPayloadExecution);
+        loopRunner.runLoop();
+    }
 
 }

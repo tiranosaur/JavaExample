@@ -7,9 +7,9 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
  */
 public interface IntegerPrinterFactory {
 
-	/**
-	 * @return
-	 */
-	public IntegerPrinter createPrinter();
+    /**
+     * @return IntegerPrinter
+     */
+    IntegerPrinter createPrinter();
 
 }

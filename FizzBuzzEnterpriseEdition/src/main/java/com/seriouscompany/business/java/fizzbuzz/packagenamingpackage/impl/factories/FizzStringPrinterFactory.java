@@ -13,23 +13,23 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class FizzStringPrinterFactory implements StringPrinterFactory {
 
-	private final FizzStringPrinter _fizzStringPrinter;
+    private final FizzStringPrinter fizzStringPrinter;
 
-	/**
-	 * @param _fizzStringPrinter FizzStringPrinter
-	 */
-	@Autowired
-	public FizzStringPrinterFactory(final FizzStringPrinter _fizzStringPrinter) {
-		super();
-		this._fizzStringPrinter = _fizzStringPrinter;
-	}
+    /**
+     * @param fizzStringPrinter FizzStringPrinter
+     */
+    @Autowired
+    public FizzStringPrinterFactory(final FizzStringPrinter fizzStringPrinter) {
+        super();
+        this.fizzStringPrinter = fizzStringPrinter;
+    }
 
-	/**
-	 * @return StringPrinter
-	 */
-	@Override
-	public StringPrinter createStringPrinter() {
-		return this._fizzStringPrinter;
-	}
+    /**
+     * @return StringPrinter
+     */
+    @Override
+    public StringPrinter createStringPrinter() {
+        return this.fizzStringPrinter;
+    }
 
 }

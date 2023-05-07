@@ -11,15 +11,15 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.facto
 @Service
 public class FizzPrinter {
 
-	private final SystemOutFizzBuzzOutputStrategyFactory _systemOutFizzBuzzOutputStrategyFactory;
+    private final SystemOutFizzBuzzOutputStrategyFactory systemOutFizzBuzzOutputStrategyFactory;
 
-	/**
-	 * @param _systemOutFizzBuzzOutputStrategyFactory
-	 */
-	@Autowired
-	public FizzPrinter(final SystemOutFizzBuzzOutputStrategyFactory _systemOutFizzBuzzOutputStrategyFactory) {
-		super();
-		this._systemOutFizzBuzzOutputStrategyFactory = _systemOutFizzBuzzOutputStrategyFactory;
-	}
+    /**
+     * @param systemOutFizzBuzzOutputStrategyFactory
+     */
+    @Autowired
+    public FizzPrinter(final SystemOutFizzBuzzOutputStrategyFactory systemOutFizzBuzzOutputStrategyFactory) {
+        super();
+        this.systemOutFizzBuzzOutputStrategyFactory = systemOutFizzBuzzOutputStrategyFactory;
+    }
 
 }

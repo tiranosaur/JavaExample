@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public final class FizzStrategyConstants {
 
-	private FizzStrategyConstants() {}
+    private FizzStrategyConstants() {
+    }
 
-	public static final int FIZZ_INTEGER_CONSTANT_VALUE = 3;
+    public static final int FIZZ_INTEGER_CONSTANT_VALUE = 3;
 
 }

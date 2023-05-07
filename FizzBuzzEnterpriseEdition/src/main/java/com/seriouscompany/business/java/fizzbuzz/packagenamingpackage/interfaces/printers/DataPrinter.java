@@ -5,14 +5,14 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interface
  */
 public interface DataPrinter {
 
-	/**
-	 * @return
-	 */
-	public void print();
+    /**
+     * @return
+     */
+    void print();
 
-	/**
-	 * @param value
-	 */
-	public void printValue(Object value);
+    /**
+     * @param value Object
+     */
+    void printValue(Object value);
 
 }

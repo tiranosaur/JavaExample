@@ -11,25 +11,24 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
  * Factory for SystemOutFizzBuzzOutputStrategy
  */
 @Service
-public class SystemOutFizzBuzzOutputStrategyFactory implements
-		FizzBuzzOutputStrategyFactory {
+public class SystemOutFizzBuzzOutputStrategyFactory implements FizzBuzzOutputStrategyFactory {
 
-	private final SystemOutFizzBuzzOutputStrategy _systemOutFizzBuzzOutputStrategy;
+    private final SystemOutFizzBuzzOutputStrategy systemOutFizzBuzzOutputStrategy;
 
-	/**
-	 * @param _systemOutFizzBuzzOutputStrategy SystemOutFizzBuzzOutputStrategy
-	 */
-	@Autowired
-	public SystemOutFizzBuzzOutputStrategyFactory(final SystemOutFizzBuzzOutputStrategy _systemOutFizzBuzzOutputStrategy) {
-		super();
-		this._systemOutFizzBuzzOutputStrategy = _systemOutFizzBuzzOutputStrategy;
-	}
+    /**
+     * @param systemOutFizzBuzzOutputStrategy SystemOutFizzBuzzOutputStrategy
+     */
+    @Autowired
+    public SystemOutFizzBuzzOutputStrategyFactory(final SystemOutFizzBuzzOutputStrategy systemOutFizzBuzzOutputStrategy) {
+        super();
+        this.systemOutFizzBuzzOutputStrategy = systemOutFizzBuzzOutputStrategy;
+    }
 
-	/**
-	 * @return FizzBuzzOutputStrategy
-	 */
-	@Override
-	public FizzBuzzOutputStrategy createOutputStrategy() {
-		return this._systemOutFizzBuzzOutputStrategy;
-	}
+    /**
+     * @return FizzBuzzOutputStrategy
+     */
+    @Override
+    public FizzBuzzOutputStrategy createOutputStrategy() {
+        return this.systemOutFizzBuzzOutputStrategy;
+    }
 }

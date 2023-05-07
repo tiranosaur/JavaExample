@@ -5,9 +5,9 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interface
  */
 public interface FizzBuzzUpperLimitParameter {
 
-	/**
-	 * @return
-	 */
-	public int obtainUpperLimitValue();
+    /**
+     * @return Integer
+     */
+    int obtainUpperLimitValue();
 
 }

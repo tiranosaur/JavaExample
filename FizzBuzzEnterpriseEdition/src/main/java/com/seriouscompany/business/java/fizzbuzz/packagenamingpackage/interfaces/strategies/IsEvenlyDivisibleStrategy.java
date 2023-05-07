@@ -5,10 +5,10 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interface
  */
 public interface IsEvenlyDivisibleStrategy {
 
-	/**
-	 * @param theInteger
-	 * @return
-	 */
-	public boolean isEvenlyDivisible(int theInteger);
+    /**
+     * @param theInteger Integer
+     * @return Boolean
+     */
+    boolean isEvenlyDivisible(int theInteger);
 
 }

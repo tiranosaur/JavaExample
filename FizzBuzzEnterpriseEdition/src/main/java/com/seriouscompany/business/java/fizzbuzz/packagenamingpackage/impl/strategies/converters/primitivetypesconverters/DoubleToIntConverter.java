@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 @Service
 public final class DoubleToIntConverter {
 
-	private DoubleToIntConverter() {}
+    private DoubleToIntConverter() {
+    }
 
-	/**
-	 * @param dbDoubleToConvert double
-	 * @return int
-	 */
-	public static int Convert(final double dbDoubleToConvert) {
-		final int nConversionResult = (int) dbDoubleToConvert;
-		return nConversionResult;
-	}
+    /**
+     * @param dbDoubleToConvert double
+     * @return int
+     */
+    public static int convert(final double dbDoubleToConvert) {
+        return (int) dbDoubleToConvert;
+    }
 
 }

@@ -13,24 +13,24 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class StandardFizzBuzz implements FizzBuzz {
 
-	private final FizzBuzzSolutionStrategyFactory _fizzBuzzSolutionStrategyFactory;
+    private final FizzBuzzSolutionStrategyFactory fizzBuzzSolutionStrategyFactory;
 
-	/**
-	 * @param _fizzBuzzSolutionStrategyFactory
-	 */
-	@Autowired
-	public StandardFizzBuzz(final FizzBuzzSolutionStrategyFactory _fizzBuzzSolutionStrategyFactory) {
-		super();
-		this._fizzBuzzSolutionStrategyFactory = _fizzBuzzSolutionStrategyFactory;
-	}
+    /**
+     * @param fizzBuzzSolutionStrategyFactory FizzBuzzSolutionStrategyFactory
+     */
+    @Autowired
+    public StandardFizzBuzz(final FizzBuzzSolutionStrategyFactory fizzBuzzSolutionStrategyFactory) {
+        super();
+        this.fizzBuzzSolutionStrategyFactory = fizzBuzzSolutionStrategyFactory;
+    }
 
-	/**
-	 * @param nFizzBuzzUpperLimit
-	 */
-	public void fizzBuzz(final int nFizzBuzzUpperLimit) {
-		final FizzBuzzSolutionStrategy mySolutionStrategy =
-				this._fizzBuzzSolutionStrategyFactory.createFizzBuzzSolutionStrategy();
-		mySolutionStrategy.runSolution(nFizzBuzzUpperLimit);
-	}
+    /**
+     * @param nFizzBuzzUpperLimit int
+     */
+    public void fizzBuzz(final int nFizzBuzzUpperLimit) {
+        final FizzBuzzSolutionStrategy mySolutionStrategy =
+                this.fizzBuzzSolutionStrategyFactory.createFizzBuzzSolutionStrategy();
+        mySolutionStrategy.runSolution(nFizzBuzzUpperLimit);
+    }
 
 }

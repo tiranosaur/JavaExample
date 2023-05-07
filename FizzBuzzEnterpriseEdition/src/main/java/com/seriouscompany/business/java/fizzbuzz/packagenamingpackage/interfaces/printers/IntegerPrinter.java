@@ -5,9 +5,9 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interface
  */
 public interface IntegerPrinter extends DataPrinter {
 
-	/**
-	 * @param theInteger
-	 */
-	public void printInteger(int theInteger);
+    /**
+     * @param theInteger Integer
+     */
+    void printInteger(int theInteger);
 
 }

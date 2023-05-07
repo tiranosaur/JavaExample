@@ -13,23 +13,23 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class FizzStringReturnerFactory implements StringStringReturnerFactory {
 
-	private final FizzStringReturner _fizzStringReturner;
+    private final FizzStringReturner fizzStringReturner;
 
-	/**
-	 * @param _fizzStringReturner FizzStringReturner
-	 */
-	@Autowired
-	public FizzStringReturnerFactory(final FizzStringReturner _fizzStringReturner) {
-		super();
-		this._fizzStringReturner = _fizzStringReturner;
-	}
+    /**
+     * @param fizzStringReturner FizzStringReturner
+     */
+    @Autowired
+    public FizzStringReturnerFactory(final FizzStringReturner fizzStringReturner) {
+        super();
+        this.fizzStringReturner = fizzStringReturner;
+    }
 
-	/**
-	 * @return StringStringReturner
-	 */
-	@Override
-	public StringStringReturner createStringStringReturner() {
-		return this._fizzStringReturner;
-	}
+    /**
+     * @return StringStringReturner
+     */
+    @Override
+    public StringStringReturner createStringStringReturner() {
+        return this.fizzStringReturner;
+    }
 
 }

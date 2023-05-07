@@ -11,27 +11,26 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
  * Factory for FizzBuzzOutputGenerationContextVisitor
  */
 @Service
-public class FizzBuzzOutputGenerationContextVisitorFactory implements
-		OutputGenerationContextVisitorFactory {
+public class FizzBuzzOutputGenerationContextVisitorFactory implements OutputGenerationContextVisitorFactory {
 
-	private final FizzBuzzOutputGenerationContextVisitor _fizzBuzzOutputGenerationContextVisitor;
+    private final FizzBuzzOutputGenerationContextVisitor fizzBuzzOutputGenerationContextVisitor;
 
-	/**
-	 * @param _fizzBuzzOutputGenerationContextVisitor FizzBuzzOutputGenerationContextVisitor
-	 */
-	@Autowired
-	public FizzBuzzOutputGenerationContextVisitorFactory(
-			final FizzBuzzOutputGenerationContextVisitor _fizzBuzzOutputGenerationContextVisitor) {
-		super();
-		this._fizzBuzzOutputGenerationContextVisitor = _fizzBuzzOutputGenerationContextVisitor;
-	}
+    /**
+     * @param fizzBuzzOutputGenerationContextVisitor FizzBuzzOutputGenerationContextVisitor
+     */
+    @Autowired
+    public FizzBuzzOutputGenerationContextVisitorFactory(
+            final FizzBuzzOutputGenerationContextVisitor fizzBuzzOutputGenerationContextVisitor) {
+        super();
+        this.fizzBuzzOutputGenerationContextVisitor = fizzBuzzOutputGenerationContextVisitor;
+    }
 
-	/**
-	 * @return OutputGenerationContextVisitor
-	 */
-	@Override
-	public OutputGenerationContextVisitor createVisitor() {
-		return this._fizzBuzzOutputGenerationContextVisitor;
-	}
+    /**
+     * @return OutputGenerationContextVisitor
+     */
+    @Override
+    public OutputGenerationContextVisitor createVisitor() {
+        return this.fizzBuzzOutputGenerationContextVisitor;
+    }
 
 }

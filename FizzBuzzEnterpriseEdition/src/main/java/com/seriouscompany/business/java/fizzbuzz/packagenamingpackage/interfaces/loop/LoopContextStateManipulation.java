@@ -5,19 +5,19 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interface
  */
 public interface LoopContextStateManipulation {
 
-	/**
-	 * @return
-	 */
-	public void start();
+    /**
+     * @return
+     */
+    void start();
 
-	/**
-	 * @return
-	 */
-	public boolean shouldProceed();
+    /**
+     * @return Boolean
+     */
+    boolean shouldProceed();
 
-	/**
-	 * @return
-	 */
-	public void proceed();
+    /**
+     * @return
+     */
+    void proceed();
 
 }

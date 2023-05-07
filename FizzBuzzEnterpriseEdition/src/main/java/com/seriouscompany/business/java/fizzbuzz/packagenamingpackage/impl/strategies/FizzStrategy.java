@@ -12,17 +12,16 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.math.
 @Service
 public class FizzStrategy implements IsEvenlyDivisibleStrategy {
 
-	/**
-	 * @param theInteger int
-	 * @return boolean
-	 */
-	public boolean isEvenlyDivisible(final int theInteger) {
-		if (NumberIsMultipleOfAnotherNumberVerifier.numberIsMultipleOfAnotherNumber(theInteger,
-				FizzStrategyConstants.FIZZ_INTEGER_CONSTANT_VALUE)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    /**
+     * @param theInteger int
+     * @return boolean
+     */
+    public boolean isEvenlyDivisible(final int theInteger) {
+        if (NumberIsMultipleOfAnotherNumberVerifier.numberIsMultipleOfAnotherNumber(theInteger, FizzStrategyConstants.FIZZ_INTEGER_CONSTANT_VALUE)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

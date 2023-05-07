@@ -14,26 +14,25 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class SingleStepPayload implements LoopPayloadExecution {
 
-	private final OutputGenerationStrategy _outputGenerationStrategy;
+    private final OutputGenerationStrategy outputGenerationStrategy;
 
-	/**
-	 * @param _outputGenerationStrategy
-	 */
-	@Autowired
-	public SingleStepPayload(final OutputGenerationStrategy _outputGenerationStrategy) {
-		super();
-		this._outputGenerationStrategy = _outputGenerationStrategy;
-	}
+    /**
+     * @param outputGenerationStrategy OutputGenerationStrategy
+     */
+    @Autowired
+    public SingleStepPayload(final OutputGenerationStrategy outputGenerationStrategy) {
+        super();
+        this.outputGenerationStrategy = outputGenerationStrategy;
+    }
 
-	/**
-	 * @param stateRetrieval LoopContextStateRetrieval
-	 * @return void
-	 */
-	@Override
-	public void runLoopPayload(final LoopContextStateRetrieval stateRetrieval) {
-		final LoopContextStateRetrievalToSingleStepOutputGenerationAdapter adapter =
-				new LoopContextStateRetrievalToSingleStepOutputGenerationAdapter(stateRetrieval);
-		this._outputGenerationStrategy.performGenerationForCurrentStep(adapter);
-	}
+    /**
+     * @param stateRetrieval LoopContextStateRetrieval
+     * @return void
+     */
+    @Override
+    public void runLoopPayload(final LoopContextStateRetrieval stateRetrieval) {
+        final LoopContextStateRetrievalToSingleStepOutputGenerationAdapter adapter = new LoopContextStateRetrievalToSingleStepOutputGenerationAdapter(stateRetrieval);
+        this.outputGenerationStrategy.performGenerationForCurrentStep(adapter);
+    }
 
 }

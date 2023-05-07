@@ -13,23 +13,23 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class IntegerIntegerPrinterFactory implements IntegerPrinterFactory {
 
-	private final IntegerIntegerPrinter _integerIntegerPrinter;
+    private final IntegerIntegerPrinter integerIntegerPrinter;
 
-	/**
-	 * @param _integerIntegerPrinter IntegerIntegerPrinter
-	 */
-	@Autowired
-	public IntegerIntegerPrinterFactory(final IntegerIntegerPrinter _integerIntegerPrinter) {
-		super();
-		this._integerIntegerPrinter = _integerIntegerPrinter;
-	}
+    /**
+     * @param integerIntegerPrinter IntegerIntegerPrinter
+     */
+    @Autowired
+    public IntegerIntegerPrinterFactory(final IntegerIntegerPrinter integerIntegerPrinter) {
+        super();
+        this.integerIntegerPrinter = integerIntegerPrinter;
+    }
 
-	/**
-	 * @return IntegerPrinter
-	 */
-	@Override
-	public IntegerPrinter createPrinter() {
-		return this._integerIntegerPrinter;
-	}
+    /**
+     * @return IntegerPrinter
+     */
+    @Override
+    public IntegerPrinter createPrinter() {
+        return this.integerIntegerPrinter;
+    }
 
 }

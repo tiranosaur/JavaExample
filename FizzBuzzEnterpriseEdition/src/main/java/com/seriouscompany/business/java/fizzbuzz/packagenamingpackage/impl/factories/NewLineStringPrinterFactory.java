@@ -13,23 +13,23 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class NewLineStringPrinterFactory implements StringPrinterFactory {
 
-	private final NewLineStringPrinter _newLineStringPrinter;
+    private final NewLineStringPrinter newLineStringPrinter;
 
-	/**
-	 * @param _newLineStringPrinter NewLineStringPrinter
-	 */
-	@Autowired
-	public NewLineStringPrinterFactory(final NewLineStringPrinter _newLineStringPrinter) {
-		super();
-		this._newLineStringPrinter = _newLineStringPrinter;
-	}
+    /**
+     * @param newLineStringPrinter NewLineStringPrinter
+     */
+    @Autowired
+    public NewLineStringPrinterFactory(final NewLineStringPrinter newLineStringPrinter) {
+        super();
+        this.newLineStringPrinter = newLineStringPrinter;
+    }
 
-	/**
-	 * @return StringPrinter
-	 */
-	@Override
-	public StringPrinter createStringPrinter() {
-		return this._newLineStringPrinter;
-	}
+    /**
+     * @return StringPrinter
+     */
+    @Override
+    public StringPrinter createStringPrinter() {
+        return this.newLineStringPrinter;
+    }
 
 }

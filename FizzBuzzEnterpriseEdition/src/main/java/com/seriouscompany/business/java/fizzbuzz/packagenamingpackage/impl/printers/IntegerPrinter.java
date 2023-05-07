@@ -11,15 +11,15 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.facto
 @Service
 public class IntegerPrinter {
 
-	private final SystemOutFizzBuzzOutputStrategyFactory _systemOutFizzBuzzOutputStrategyFactory;
+    private final SystemOutFizzBuzzOutputStrategyFactory systemOutFizzBuzzOutputStrategyFactory;
 
-	/**
-	 * @param _systemOutFizzBuzzOutputStrategyFactory
-	 */
-	@Autowired
-	public IntegerPrinter(final SystemOutFizzBuzzOutputStrategyFactory _systemOutFizzBuzzOutputStrategyFactory) {
-		super();
-		this._systemOutFizzBuzzOutputStrategyFactory = _systemOutFizzBuzzOutputStrategyFactory;
-	}
+    /**
+     * @param systemOutFizzBuzzOutputStrategyFactory
+     */
+    @Autowired
+    public IntegerPrinter(final SystemOutFizzBuzzOutputStrategyFactory systemOutFizzBuzzOutputStrategyFactory) {
+        super();
+        this.systemOutFizzBuzzOutputStrategyFactory = systemOutFizzBuzzOutputStrategyFactory;
+    }
 
 }

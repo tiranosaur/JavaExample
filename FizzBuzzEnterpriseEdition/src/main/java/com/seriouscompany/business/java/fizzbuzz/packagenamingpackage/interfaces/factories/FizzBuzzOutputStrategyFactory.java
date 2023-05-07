@@ -7,9 +7,9 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
  */
 public interface FizzBuzzOutputStrategyFactory {
 
-	/**
-	 * @return
-	 */
-	public FizzBuzzOutputStrategy createOutputStrategy();
+    /**
+     * @return FizzBuzzOutputStrategy
+     */
+    FizzBuzzOutputStrategy createOutputStrategy();
 
 }

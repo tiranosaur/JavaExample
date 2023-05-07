@@ -15,51 +15,51 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class IntegerIntegerPrinter implements IntegerPrinter {
 
-	private final SystemOutFizzBuzzOutputStrategyFactory _systemOutFizzBuzzOutputStrategyFactory;
+    private final SystemOutFizzBuzzOutputStrategyFactory systemOutFizzBuzzOutputStrategyFactory;
 
-	private final IntegerIntegerStringReturnerFactory _integerIntegerStringReturnerFactory;
+    private final IntegerIntegerStringReturnerFactory integerIntegerStringReturnerFactory;
 
-	/**
-	 * @param _integerIntegerStringReturnerFactory IntegerIntegerStringReturnerFactory
-	 * @param _systemOutFizzBuzzOutputStrategyFactory SystemOutFizzBuzzOutputStrategyFactory
-	 */
-	@Autowired
-	public IntegerIntegerPrinter(final IntegerIntegerStringReturnerFactory _integerIntegerStringReturnerFactory,
-			final SystemOutFizzBuzzOutputStrategyFactory _systemOutFizzBuzzOutputStrategyFactory) {
-		super();
-		this._integerIntegerStringReturnerFactory = _integerIntegerStringReturnerFactory;
-		this._systemOutFizzBuzzOutputStrategyFactory = _systemOutFizzBuzzOutputStrategyFactory;
-	}
+    /**
+     * @param integerIntegerStringReturnerFactory    IntegerIntegerStringReturnerFactory
+     * @param systemOutFizzBuzzOutputStrategyFactory SystemOutFizzBuzzOutputStrategyFactory
+     */
+    @Autowired
+    public IntegerIntegerPrinter(final IntegerIntegerStringReturnerFactory integerIntegerStringReturnerFactory,
+                                 final SystemOutFizzBuzzOutputStrategyFactory systemOutFizzBuzzOutputStrategyFactory) {
+        super();
+        this.integerIntegerStringReturnerFactory = integerIntegerStringReturnerFactory;
+        this.systemOutFizzBuzzOutputStrategyFactory = systemOutFizzBuzzOutputStrategyFactory;
+    }
 
-	/**
-	 * @param theInteger
-	 */
-	public void printInteger(final int theInteger) {
-		final IntegerStringReturner myIntegerStringReturner =
-				this._integerIntegerStringReturnerFactory.createIntegerStringReturner();
-		final String myIntegerString = myIntegerStringReturner.getIntegerReturnString(theInteger);
-		final FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter myOutputAdapter =
-				new FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter(
-						this._systemOutFizzBuzzOutputStrategyFactory.createOutputStrategy());
+    /**
+     * @param theInteger
+     */
+    public void printInteger(final int theInteger) {
+        final IntegerStringReturner myIntegerStringReturner =
+                this.integerIntegerStringReturnerFactory.createIntegerStringReturner();
+        final String myIntegerString = myIntegerStringReturner.getIntegerReturnString(theInteger);
+        final FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter myOutputAdapter =
+                new FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter(
+                        this.systemOutFizzBuzzOutputStrategyFactory.createOutputStrategy());
 
-		myOutputAdapter.output(myIntegerString);
-	}
+        myOutputAdapter.output(myIntegerString);
+    }
 
-	/**
-	 * @return void
-	 */
-	@Override
-	public void print() {
-		throw new UnsupportedOperationException(
-				com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Constants.COM_SERIOUSCOMPANY_BUSINESS_JAVA_FIZZBUZZ_PACKAGENAMINGPACKAGE_IMPL_PRINTERS_INTEGER_INTEGER_PRINTER_PRINT);
-	}
+    /**
+     * @return void
+     */
+    @Override
+    public void print() {
+        throw new UnsupportedOperationException(
+                com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.Constants.COM_SERIOUSCOMPANY_BUSINESS_JAVA_FIZZBUZZ_PACKAGENAMINGPACKAGE_IMPL_PRINTERS_INTEGER_INTEGER_PRINTER_PRINT);
+    }
 
-	/**
-	 * @param value
-	 */
-	@Override
-	public void printValue(final Object value) {
-		this.printInteger((Integer) value);
-	}
+    /**
+     * @param value
+     */
+    @Override
+    public void printValue(final Object value) {
+        this.printInteger((Integer) value);
+    }
 
 }

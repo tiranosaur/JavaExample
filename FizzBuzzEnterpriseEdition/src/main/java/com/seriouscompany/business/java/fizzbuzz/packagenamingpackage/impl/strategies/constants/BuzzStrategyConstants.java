@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public final class BuzzStrategyConstants {
 
-	private BuzzStrategyConstants() {}
+    private BuzzStrategyConstants() {
+    }
 
-	public static final int BUZZ_INTEGER_CONSTANT_VALUE = 5;
+    public static final int BUZZ_INTEGER_CONSTANT_VALUE = 5;
 
 }

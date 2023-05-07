@@ -15,42 +15,39 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class BuzzStringPrinter implements StringPrinter {
 
-	private final SystemOutFizzBuzzOutputStrategyFactory _outputStrategyFactory;
+    private final SystemOutFizzBuzzOutputStrategyFactory outputStrategyFactory;
 
-	private final BuzzStringReturnerFactory _buzzStringReturnerFactory;
+    private final BuzzStringReturnerFactory buzzStringReturnerFactory;
 
-	/**
-	 * @param _buzzStringReturnerFactory
-	 * @param _outputStrategyFactory
-	 */
-	@Autowired
-	public BuzzStringPrinter(final BuzzStringReturnerFactory _buzzStringReturnerFactory,
-			final SystemOutFizzBuzzOutputStrategyFactory _outputStrategyFactory) {
-		super();
-		this._buzzStringReturnerFactory = _buzzStringReturnerFactory;
-		this._outputStrategyFactory = _outputStrategyFactory;
-	}
+    /**
+     * @param buzzStringReturnerFactory
+     * @param outputStrategyFactory
+     */
+    @Autowired
+    public BuzzStringPrinter(final BuzzStringReturnerFactory buzzStringReturnerFactory, final SystemOutFizzBuzzOutputStrategyFactory outputStrategyFactory) {
+        super();
+        this.buzzStringReturnerFactory = buzzStringReturnerFactory;
+        this.outputStrategyFactory = outputStrategyFactory;
+    }
 
-	/**
-	 * @return void
-	 */
-	public void print() {
-		final StringStringReturner myBuzzStringReturner = this._buzzStringReturnerFactory
-			.createStringStringReturner();
-		final FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter myOutputAdapter =
-				new FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter(
-						this._outputStrategyFactory.createOutputStrategy());
+    /**
+     * @return void
+     */
+    public void print() {
+        final StringStringReturner myBuzzStringReturner = this.buzzStringReturnerFactory.createStringStringReturner();
+        final FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter myOutputAdapter =
+                new FizzBuzzOutputStrategyToFizzBuzzExceptionSafeOutputStrategyAdapter(this.outputStrategyFactory.createOutputStrategy());
 
-		myOutputAdapter.output(myBuzzStringReturner.getReturnString());
-	}
+        myOutputAdapter.output(myBuzzStringReturner.getReturnString());
+    }
 
-	/**
-	 * @param value
-	 * @return
-	 */
-	@Override
-	public void printValue(final Object value) {
-		this.print();
-	}
+    /**
+     * @param value
+     * @return
+     */
+    @Override
+    public void printValue(final Object value) {
+        this.print();
+    }
 
 }

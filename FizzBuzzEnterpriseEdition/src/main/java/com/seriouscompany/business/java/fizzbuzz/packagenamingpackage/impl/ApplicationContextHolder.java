@@ -34,7 +34,7 @@ public class ApplicationContextHolder implements ApplicationContextAware {
 	}
 
 	/**
-	 * @param applicationContext
+	 * @param applicationContext ApplicationContext
 	 * @throws BeansException
 	 */
 	@Override

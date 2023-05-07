@@ -5,9 +5,9 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interface
  */
 public interface LoopPayloadExecution {
 
-	/**
-	 * @param stateRetrieval
-	 */
-	public void runLoopPayload(LoopContextStateRetrieval stateRetrieval);
+    /**
+     * @param stateRetrieval LoopContextStateRetrieval
+     */
+    void runLoopPayload(LoopContextStateRetrieval stateRetrieval);
 
 }

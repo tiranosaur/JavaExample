@@ -12,23 +12,23 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
 @Service
 public class EnterpriseGradeFizzBuzzSolutionStrategyFactory implements FizzBuzzSolutionStrategyFactory {
 
-	private final FizzBuzzSolutionStrategy _fizzBuzzSolutionStrategy;
+    private final FizzBuzzSolutionStrategy fizzBuzzSolutionStrategy;
 
-	/**
-	 * @param _fizzBuzzSolutionStrategy FizzBuzzSolutionStrategy
-	 */
-	@Autowired
-	public EnterpriseGradeFizzBuzzSolutionStrategyFactory(final FizzBuzzSolutionStrategy _fizzBuzzSolutionStrategy) {
-		super();
-		this._fizzBuzzSolutionStrategy = _fizzBuzzSolutionStrategy;
-	}
+    /**
+     * @param fizzBuzzSolutionStrategy FizzBuzzSolutionStrategy
+     */
+    @Autowired
+    public EnterpriseGradeFizzBuzzSolutionStrategyFactory(final FizzBuzzSolutionStrategy fizzBuzzSolutionStrategy) {
+        super();
+        this.fizzBuzzSolutionStrategy = fizzBuzzSolutionStrategy;
+    }
 
-	/**
-	 * @return FizzBuzzSolutionStrategy
-	 */
-	@Override
-	public FizzBuzzSolutionStrategy createFizzBuzzSolutionStrategy() {
-		return this._fizzBuzzSolutionStrategy;
-	}
+    /**
+     * @return FizzBuzzSolutionStrategy
+     */
+    @Override
+    public FizzBuzzSolutionStrategy createFizzBuzzSolutionStrategy() {
+        return this.fizzBuzzSolutionStrategy;
+    }
 
 }

@@ -11,26 +11,25 @@ import com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interfaces
  * Factory for NoFizzNoBuzzStrategy
  */
 @Service
-public class NoFizzNoBuzzStrategyFactory implements
-		IsEvenlyDivisibleStrategyFactory {
+public class NoFizzNoBuzzStrategyFactory implements IsEvenlyDivisibleStrategyFactory {
 
-	private final NoFizzNoBuzzStrategy _noFizzNoBuzzStrategy;
+    private final NoFizzNoBuzzStrategy noFizzNoBuzzStrategy;
 
-	/**
-	 * @param _noFizzNoBuzzStrategy NoFizzNoBuzzStrategy
-	 */
-	@Autowired
-	public NoFizzNoBuzzStrategyFactory(final NoFizzNoBuzzStrategy _noFizzNoBuzzStrategy) {
-		super();
-		this._noFizzNoBuzzStrategy = _noFizzNoBuzzStrategy;
-	}
+    /**
+     * @param noFizzNoBuzzStrategy NoFizzNoBuzzStrategy
+     */
+    @Autowired
+    public NoFizzNoBuzzStrategyFactory(final NoFizzNoBuzzStrategy noFizzNoBuzzStrategy) {
+        super();
+        this.noFizzNoBuzzStrategy = noFizzNoBuzzStrategy;
+    }
 
-	/**
-	 * @return IsEvenlyDivisibleStrategy
-	 */
-	@Override
-	public IsEvenlyDivisibleStrategy createIsEvenlyDivisibleStrategy() {
-		return this._noFizzNoBuzzStrategy;
-	}
+    /**
+     * @return IsEvenlyDivisibleStrategy
+     */
+    @Override
+    public IsEvenlyDivisibleStrategy createIsEvenlyDivisibleStrategy() {
+        return this.noFizzNoBuzzStrategy;
+    }
 
 }

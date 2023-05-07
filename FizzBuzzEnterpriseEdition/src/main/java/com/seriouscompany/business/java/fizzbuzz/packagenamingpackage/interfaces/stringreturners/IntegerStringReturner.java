@@ -5,10 +5,10 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interface
  */
 public interface IntegerStringReturner {
 
-	/**
-	 * @param theInteger
-	 * @return
-	 */
-	public String getIntegerReturnString(int theInteger);
+    /**
+     * @param theInteger Integer
+     * @return String
+     */
+    String getIntegerReturnString(int theInteger);
 
 }

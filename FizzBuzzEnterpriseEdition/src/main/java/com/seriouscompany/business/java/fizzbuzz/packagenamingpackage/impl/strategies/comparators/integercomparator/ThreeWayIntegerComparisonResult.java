@@ -4,7 +4,7 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.impl.stra
  * ThreeWayIntegerComparisonResult
  */
 public enum ThreeWayIntegerComparisonResult {
-	FirstIsLessThanSecond,
-	FirstEqualsSecond,
-	FirstIsGreaterThanSecond
+    FIRST_IS_LESS_THAN_SECOND,
+    FIRST_EQUALS_SECOND,
+    FIRST_IS_GREATER_THAN_SECOND
 }

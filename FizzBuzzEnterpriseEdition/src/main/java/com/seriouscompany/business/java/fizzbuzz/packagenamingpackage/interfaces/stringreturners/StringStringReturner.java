@@ -5,9 +5,9 @@ package com.seriouscompany.business.java.fizzbuzz.packagenamingpackage.interface
  */
 public interface StringStringReturner {
 
-	/**
-	 * @return
-	 */
-	public String getReturnString();
+    /**
+     * @return String
+     */
+    String getReturnString();
 
 }
