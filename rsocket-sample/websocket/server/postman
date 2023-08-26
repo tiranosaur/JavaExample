@@ -1,0 +1,5 @@
+metadataMimeType:
+    message/x.rsocket.routing.v0
+    message/x.rsocket.composite-metadata.v0
+
+dataMimeType: application/json
