@@ -1,6 +1,6 @@
 package com.example.client.configuration;
 
-import com.example.client.handler.ClientHandler;
+import com.example.client.handler.RSocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.rsocket.RSocketRequester;
@@ -13,7 +13,7 @@ public class RSocketConfiguration {
     @Bean
     public RSocketRequester rSocketRequester(RSocketRequester.Builder builder, RSocketStrategies rSocketStrategies) {
         return builder.dataMimeType(MimeTypeUtils.APPLICATION_JSON)
-                .rsocketFactory(RSocketMessageHandler.clientResponder(rSocketStrategies, new ClientHandler()))
+                .rsocketFactory(RSocketMessageHandler.clientResponder(rSocketStrategies, new RSocketHandler()))
                 .setupRoute("connect")
                 .setupData("user")
                 .connectTcp("localhost", 7000)

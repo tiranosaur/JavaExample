@@ -8,7 +8,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Slf4j
-public class ClientHandler {
+public class RSocketHandler {
     @MessageMapping("status")
     public Mono<String> statusUpdate(String status) {
         log.info("Received (" + status + ") at " + LocalDateTime.now());
