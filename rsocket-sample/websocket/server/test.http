@@ -1,0 +1,51 @@
+# required plugin RSocket Requests In HTTP Client
+
+### test
+RSOCKET test
+Host: ws://localhost:8081/rsocket
+
+
+### test-string
+RSOCKET test-string
+Host: ws://localhost:8081/rsocket
+Content-Type: application/json
+
+"ping"
+
+
+### hello
+RSOCKET hello
+Host: ws://localhost:8081/rsocket
+Content-Type: application/json
+
+{"message": "hello tiranosaur"}
+
+
+### greet.{name}
+RSOCKET greet.tiranosaur
+Host: ws://localhost:8081/rsocket
+Content-Type: application/json
+
+{"message": "hello"}
+
+
+### greet-stream
+STREAM greet-stream
+Host: ws://localhost:8081/rsocket
+Content-Type: application/json
+
+{"message": "hello"}
+
+
+### greet-channel
+RSOCKET greet-channel
+Host: ws://localhost:8081/rsocket
+Content-Type: application/json
+
+{"message": "hello"}
+
+
+### greet-stream
+STREAM numbers-stream
+Host: ws://localhost:8081/rsocket
+Content-Type: application/json

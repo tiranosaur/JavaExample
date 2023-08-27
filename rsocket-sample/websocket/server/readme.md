@@ -1,3 +1,4 @@
+<h1 style="color: red">you can use test.http for testing</h1>
 <h3>brew install yschimke/tap/rsocket-cli</h3>
 <ul style="font-size: 16px">
     <li><b>test</b> - <dfn>rsocket-cli --request --debug ws://localhost:8081/rsocket --route=test</dfn></li>

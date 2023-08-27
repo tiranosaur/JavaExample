@@ -1,6 +1,7 @@
 package com.example.server.controller;
 
 import com.example.server.model.Greeting;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -21,40 +22,41 @@ public class GreetingServerController {
     private static final Random random = new Random();
 
     @MessageMapping("test")
-    public String test() {
+    public Mono<String> test() {
         log.info("   ***   Received test");
-        return "tested";
+        return Mono.just("***   tested   ***");
     }
 
     @MessageMapping("test-string")
     public Mono<String> testString(Mono<String> ping) {
         log.info("   ***   Received test-string {}", ping);
-        return Mono.just("pong");
+        return Mono.just("***   pong   ***");
     }
 
     @MessageMapping("hello")
-    public Mono<Void> hello(Greeting p) {
-        log.info("   ***   received hello - {} at {}", p, Instant.now());
-        return Mono.empty();
+    public Mono<String> hello(Greeting greeting) {
+        log.info("   ***   received hello - {} at {}", greeting, Instant.now());
+        greeting.setMessage(String.format("***   %s   ***", greeting.getMessage()));
+        return Mono.just(greeting.getMessage());
     }
 
     @MessageMapping("greet.{name}")
-    public Mono<String> greet(@DestinationVariable String name, @Payload Greeting p) {
-        log.info("   ***   received greet.{name} - {}, {} at {}", name, p, Instant.now());
-        return Mono.just(String.format("Hello %s, %s at %s", name, p.getMessage(), Instant.now()));
+    public Mono<String> greet(@DestinationVariable String name, @Payload Greeting greeting) {
+        log.info("   ***   received greet.{name} - {}, {} at {}", name, greeting, Instant.now());
+        return Mono.just(String.format("Hello %s, %s at %s", name, greeting.getMessage(), Instant.now()));
     }
 
     @MessageMapping("greet-stream")
-    public Flux<String> greetStream(@Payload Greeting p) {
-        log.info("   ***   received greet-stream - {} at {}", p, Instant.now());
+    public Flux<String> greetStream(@Payload Greeting greeting) {
+        log.info("   ***   received greet-stream - {} at {}", greeting, Instant.now());
         return Flux.interval(Duration.ofSeconds(1))
-                .map(i -> String.format("greet-stream#(Hello #%s, %s) at %s", i, p.getMessage(), Instant.now()));
+                .map(i -> String.format("greet-stream#(Hello #%s, %s) at %s", i, greeting.getMessage(), Instant.now()));
     }
 
     @MessageMapping("greet-channel")
-    public Flux<String> greetChannel(@Payload Flux<Greeting> p) {
-        log.info("   ***   received greet-channel -  {} at {}", p, Instant.now());
-        return p.delayElements(Duration.ofSeconds(1))
+    public Flux<String> greetChannel(@Payload Flux<Greeting> greetingFlux) {
+        log.info("   ***   received greet-channel -  {} at {}", greetingFlux, Instant.now());
+        return greetingFlux.delayElements(Duration.ofSeconds(1))
                 .map(m -> String.format("greet-channel# (%s) at %s", m, Instant.now()));
     }
 
