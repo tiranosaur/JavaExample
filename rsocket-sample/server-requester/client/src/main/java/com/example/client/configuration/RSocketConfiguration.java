@@ -16,7 +16,7 @@ public class RSocketConfiguration {
                 .rsocketFactory(RSocketMessageHandler.clientResponder(rSocketStrategies, new RSocketHandler()))
                 .setupRoute("connect")
                 .setupData("user")
-                .connectTcp("localhost", 7000)
+                .connectTcp("localhost", 8082)
                 .block();
     }
 }

@@ -37,7 +37,7 @@ class GreetingController {
     }
 
     @MessageMapping("ping")
-    public Mono<String> ping(@Payload String message) {
+    public Mono<String> ping(RSocketRequester requester,@Payload String message) {
         log.info("ping payload : {}", message);
         return Mono.just("ping received (" + message + ") at " + LocalDateTime.now());
     }
