@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: flux
+
+server:
+  port: 8081
+
+service:
+  url: 'https://filesamples.com/samples/code/json/sample1.json'
