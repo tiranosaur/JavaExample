@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.transact.listener.GlobalListener;
 import org.example.transact.model.Author;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,10 +15,22 @@ public class AuthorRepositoryImpl {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private AuthorJpaRepository authorJpaRepository;
+
     @Transactional
     public void save(Author author) {
         author.setId(null);
         entityManager.persist(author);
+        if (author.getName().equals(GlobalListener.name)) {
+            throw new RuntimeException();
+        }
+    }
+
+    @Transactional
+    public void saveJpa(Author author) {
+        author.setId(null);
+        authorJpaRepository.save(author);
         if (author.getName().equals(GlobalListener.name)) {
             throw new RuntimeException();
         }
@@ -32,7 +45,6 @@ public class AuthorRepositoryImpl {
             throw new RuntimeException();
         }
     }
-
 
 
     @Transactional

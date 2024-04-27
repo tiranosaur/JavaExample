@@ -8,8 +8,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Slf4j
 @Service
 public class GlobalListener {
@@ -22,6 +20,7 @@ public class GlobalListener {
     public void listen() {
         Author author1 = new Author(null, name + 1, "main" + 1);
         Author author2 = new Author(null, name, "main" + 2);
+        Author author3 = new Author(null, name, "main" + 3);
 
         log.info("    Authors.count - [{}]", authorRepository.count());
 
@@ -29,6 +28,8 @@ public class GlobalListener {
             authorRepository.save(author1);
             log.info(" +++++ result - [{}]", authorRepository.count());
             authorRepository.save(author2);
+            log.info(" +++++ result - [{}]", authorRepository.count());
+            authorRepository.saveJpa(author3);
             log.info(" +++++ result - [{}]", authorRepository.count());
         } catch (Exception e) {
             log.info(" ----- result - [{}]", authorRepository.count());
