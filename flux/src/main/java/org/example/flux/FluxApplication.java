@@ -13,24 +13,6 @@ import java.util.ArrayList;
 public class FluxApplication {
 
     public static void main(String[] args) throws InterruptedException {
-        ArrayList<Xxx> list = new ArrayList<>();
-        list.add(new Xxx(1));
-        list.add(new Xxx(2));
-        list.add(new Xxx(13));
-        list.add(new Xxx(14));
-        list.add(new Xxx(15));
-//        SpringApplication.run(FluxApplication.class, args);
-        Flux.fromIterable(list)
-                .doOnNext(s -> s.x = s.x * 345)
-                .subscribe(x -> System.out.println(x.x));
-    }
-
-}
-
-class Xxx {
-    public int x;
-
-    public Xxx(int x) {
-        this.x = x;
+        SpringApplication.run(FluxApplication.class, args);
     }
 }
