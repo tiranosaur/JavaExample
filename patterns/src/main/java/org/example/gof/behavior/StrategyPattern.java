@@ -3,8 +3,8 @@ package org.example.gof.behavior;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 
-//Шаблон стратегия позволяет переключаться между алгоритмами или стратегиями в зависимости от ситуации.
-//	Вызывает интерфейс переданного объекта
+//Алгоритм стратегии может быть изменен во время выполнения программы.
+// Позволяет переключаться между алгоритмами или стратегиями в зависимости от ситуации.
 public class StrategyPattern {
     public static void main(String[] args) {
         ShoppingCart cart = new ShoppingCart();

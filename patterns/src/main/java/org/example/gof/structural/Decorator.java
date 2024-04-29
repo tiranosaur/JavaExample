@@ -35,4 +35,19 @@ class RedProductDecorator implements Product {
     public void setName(String name) {
         product.setName(name);
     }
+
+    @Override
+    public void printClassName() {
+
+    }
+
+    @Override
+    public void startProcess() {
+
+    }
+
+    @Override
+    public void endProcess() {
+
+    }
 }

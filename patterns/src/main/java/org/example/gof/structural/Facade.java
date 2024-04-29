@@ -1,45 +1,29 @@
 package org.example.gof.structural;
 
+import lombok.AllArgsConstructor;
+import org.example.model.Product;
+import org.example.model.ThirdProduct;
+
 //Фасад предоставляет упрощенный интерфейс для сложной системы. неколько действий над объектом в одном метода
 public class Facade {
     public static void main(String[] args) {
-        SubsystemFacade subsystemFacade = new SubsystemFacade();
-        subsystemFacade.operation();
+        ProductFacade facade = new ProductFacade(new ThirdProduct("third product"));
+        facade.turnOn();
+        facade.turnOff();
     }
 }
 
-class SubsystemFacade {
-    private final SubsystemA subsystemA;
-    private final SubsystemB subsystemB;
-    private final SubsystemC subsystemC;
+@AllArgsConstructor
+class ProductFacade {
+    private Product product;
 
-    public SubsystemFacade() {
-        this.subsystemA = new SubsystemA();
-        this.subsystemB = new SubsystemB();
-        this.subsystemC = new SubsystemC();
+    public void turnOn() {
+        product.printName();
+        product.startProcess();
     }
 
-    public void operation() {
-        subsystemA.operationA();
-        subsystemB.operationB();
-        subsystemC.operationC();
-    }
-}
-
-class SubsystemA {
-    public void operationA() {
-        System.out.println("Subsystem A operation");
-    }
-}
-
-class SubsystemB {
-    public void operationB() {
-        System.out.println("Subsystem B operation");
-    }
-}
-
-class SubsystemC {
-    public void operationC() {
-        System.out.println("Subsystem C operation");
+    public void turnOff() {
+        product.printClassName();
+        product.endProcess();
     }
 }

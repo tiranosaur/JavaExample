@@ -13,6 +13,18 @@ public class FirstProduct implements Product {
     private String name;
 
     public void printName() {
+        System.out.println(name);
+    }
+
+    public void printClassName() {
         System.out.println(this.getClass().getSimpleName());
+    }
+
+    public void startProcess() {
+        System.out.println(getName() + " is starting process");
+    }
+
+    public void endProcess() {
+        System.out.println(getName() + " is ending process");
     }
 }
