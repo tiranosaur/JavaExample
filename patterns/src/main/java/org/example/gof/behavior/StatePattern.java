@@ -1,7 +1,8 @@
 package org.example.gof.behavior;
 
 import lombok.Setter;
-
+// Используется втех случаях, когда вовремя выполнения программы объект должен менять своё поведение взависимости отсвоего состояния.
+// Шаблон позволяет менять поведение класса при изменении состояния.
 public class StatePattern {
     public static void main(String[] args) {
         Context context = new Context();
