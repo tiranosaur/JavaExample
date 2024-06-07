@@ -1,4 +1,4 @@
-### Jax-RS Jersey
+### Jax-RS Jersey (tomcat java ee javaee)
 
 ### REQUIRED
 
