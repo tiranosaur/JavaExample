@@ -1,7 +1,7 @@
 ### Jax-RS Jersey (tomcat java ee javaee)
 
 # For Tomcat 9, select Java EE 8. For Tomcat 10, select Jakarta EE 9.1.
-
+# default endpoint http://localhost:8080/demo_war_exploded/api/
 ### REQUIRED
 
 ##### - IDEA settings and then select Build, Execution, Deployment | Application Servers.
