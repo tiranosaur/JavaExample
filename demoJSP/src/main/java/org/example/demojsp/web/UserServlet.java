@@ -1,8 +1,8 @@
-package org.example.demojst.web;
+package org.example.demojsp.web;
 
-import org.example.demojst.dao.UserDAO;
-import org.example.demojst.model.User;
-import org.example.demojst.util.TypeUtil;
+import org.example.demojsp.dao.UserDAO;
+import org.example.demojsp.model.User;
+import org.example.demojsp.util.TypeUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

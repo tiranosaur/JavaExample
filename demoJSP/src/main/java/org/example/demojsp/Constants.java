@@ -1,4 +1,4 @@
-package org.example.demojst;
+package org.example.demojsp;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

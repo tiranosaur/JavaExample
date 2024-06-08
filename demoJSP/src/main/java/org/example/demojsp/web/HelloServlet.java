@@ -1,4 +1,4 @@
-package org.example.demojst.web;
+package org.example.demojsp.web;
 
 import java.io.*;
 import javax.servlet.http.*;

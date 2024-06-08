@@ -1,6 +1,4 @@
-package org.example.demojst.model;
-
-import com.fasterxml.jackson.databind.JsonSerializable;
+package org.example.demojsp.model;
 
 import java.io.Serializable;
 

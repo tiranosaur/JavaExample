@@ -1,11 +1,11 @@
-package org.example.demojst.dao;
+package org.example.demojsp.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.demojst.model.*;
-import org.example.demojst.util.DBUtil;
+import org.example.demojsp.model.*;
+import org.example.demojsp.util.DBUtil;
 
 public class UserDAO {
     public void insertUser(User user) throws SQLException {

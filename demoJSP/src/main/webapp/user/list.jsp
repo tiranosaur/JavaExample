@@ -1,4 +1,4 @@
-<%@ page import="org.example.demojst.model.User" %>
+<%@ page import="org.example.demojsp.model.User" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>

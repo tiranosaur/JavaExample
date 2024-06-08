@@ -1,4 +1,4 @@
-package org.example.demojst.util;
+package org.example.demojsp.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

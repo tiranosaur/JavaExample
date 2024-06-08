@@ -1,4 +1,4 @@
-package org.example.demojst.util;
+package org.example.demojsp.util;
 
 public class TypeUtil {
     public static Integer parseInteger(String input) {
