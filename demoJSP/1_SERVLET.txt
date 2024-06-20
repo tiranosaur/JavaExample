@@ -1,0 +1,24 @@
+request.getParameter()              возвращает значение параметра
+request.getParameterValues()        возвращает массив значений параметра
+
+response.sendRedirect               редирект
+getServletContext().getRequestDispatcher(<<uri>>).forward(request, response); перенаправление
+
+Cookie cookie = new Cookie("user", "Tom");
+response.addCookie(cookie);
+setMaxAge(int maxAgeInSeconds):     устанавливает время в секундах -1 будут удалены после закрытия браузера(завершения сессии)
+
+HttpSession session = request.getSession();
+String name = (String) session.getAttribute("name");
+invalidate(): удаляет из сессии все объекты
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+передача на jsp
+    request.setAttribute("user", user);
+    getServletContext().getRequestDispatcher(FORM_PATH_JSP).forward(request, response);
+
+    ServletContext selvletContext = getServletContext();
+    selvletContext.setAttribute("name", "Tom");
+
+    HttpSession session = request.getSession();
+    session.setAttribute("name", "Tom");
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

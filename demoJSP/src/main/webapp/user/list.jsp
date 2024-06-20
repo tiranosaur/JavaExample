@@ -19,6 +19,7 @@
 </head>
 <body>
 <div>
+    <h1>${requestScope.header}</h1>
     <table>
         <tr>
             <th>id</th>

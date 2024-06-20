@@ -55,6 +55,7 @@ public class UserServlet extends HelloServlet {
 
     private void listUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         request.setAttribute("title", "User List");
+        request.setAttribute("header", "User Handlers List");
         List<User> userList = userDAO.selectAllUsers();
         request.setAttribute("userList", userList);
         getServletContext().getRequestDispatcher(LIST_PATH_JSP).forward(request, response);
