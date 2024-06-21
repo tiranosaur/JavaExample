@@ -6,6 +6,7 @@ import org.example.demojsp.util.TypeUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @WebServlet(name = "user-servlet", value = "/user")
-public class UserServlet extends HelloServlet {
+public class UserServlet extends HttpServlet {
     private static final String PATH = "/user";
     private static final String FORM_PATH_JSP = "/user/form.jsp";
     private static final String LIST_PATH_JSP = "/user/list.jsp";
