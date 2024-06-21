@@ -1,0 +1,25 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>My Custom Tag</short-name>
+
+    <tag>
+        <name>MyTag</name>
+        <tag-class>org.example.demojsp.tag.RandomTag</tag-class>
+        <body-content>empty</body-content>
+
+        <attribute>
+            <name>max</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Integer</type>
+        </attribute>
+
+        <attribute>
+            <name>message</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+</taglib>
