@@ -13,6 +13,7 @@
 <div>
     <p><a href="hello-servlet">Hello Servlet</a></p>
     <p><a href="user">User Servlet</a></p>
+    <p><a href="upload">Upload File</a></p>
     <p><a href="chat.jsp">Enter Chat</a></p>
 </div>
 <h4>Random number(custom tag) <ex:MyTag/></h4>
