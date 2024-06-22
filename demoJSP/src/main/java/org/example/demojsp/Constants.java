@@ -6,6 +6,11 @@ public class Constants {
     private Constants() {
     }
 
+    public static final String LAYOUT_PATH = "/layout.jsp";
+    public static final String LAYOUT_HEADER = "HeaderContentJSP";
+    public static final String LAYOUT_MAIN = "MainContentJSP";
+    public static final String LAYOUT_FOOTER = "FooterContentJSP";
+
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     public static final String UPLOAD_DIRECTORY = "upload";
     public static final String DEFAULT_FILENAME = "default.file";

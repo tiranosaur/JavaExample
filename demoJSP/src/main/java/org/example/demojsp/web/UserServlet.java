@@ -1,5 +1,7 @@
 package org.example.demojsp.web;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.demojsp.dao.UserDAO;
 import org.example.demojsp.model.User;
 import org.example.demojsp.util.TypeUtil;
@@ -16,6 +18,7 @@ import java.util.Optional;
 
 @WebServlet(name = "user-servlet", value = "/user")
 public class UserServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger();
     private static final String PATH = "/user";
     private static final String FORM_PATH_JSP = "/user/form.jsp";
     private static final String LIST_PATH_JSP = "/user/list.jsp";
@@ -45,6 +48,7 @@ public class UserServlet extends HttpServlet {
                     break;
             }
         } catch (Exception e) {
+            log.info("message - [{}]", e.getMessage());
             response.setStatus(404);
         }
     }
