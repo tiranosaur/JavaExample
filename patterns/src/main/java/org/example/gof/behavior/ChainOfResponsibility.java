@@ -7,84 +7,41 @@ import lombok.Data;
 //	Запрос входит с одного конца и проходит через каждый объект, пока не найдет подходящий обработчик. Один абстрактный объект. Несколько его обработчиков.
 //	последовательно пробуем
 public class ChainOfResponsibility {
-    public static void main(String[] args) {
-        Handler handler1 = new ConcreteHandler1();
-        Handler handler2 = new ConcreteHandler2();
-        Handler defaultHandler = new DefaultHandler();
+    public static void main(String[] args) throws Exception {
+        Step step1 = new StepImpl("111", null);
+        Step step2 = new StepImpl("222", step1);
+        Step step3 = new StepImpl("333", step2);
+        Step step4 = new StepImpl("444", step3);
 
-//        Check console!!!
-//        handler2.setNextHandler(defaultHandler);
-        handler1.setNextHandler(handler2);
-
-        Request request1 = new Request("Type1");
-        Request request2 = new Request("Type2");
-        Request request3 = new Request("Type3");
-
-        handler1.handleRequest(request1);
-        handler1.handleRequest(request2);
-        handler1.handleRequest(request3);
-        System.out.println("_------------------------------_");
-        handler1
-                .handleRequest(request1)
-                .handleRequest(request2)
-                .handleRequest(request3);
+        step4.execute();
     }
 }
 
-@Data
-@AllArgsConstructor
-class Request {
-    private String type;
+interface Step {
+    void execute();
 }
 
-interface Handler {
-    Handler handleRequest(Request request);
+class StepImpl implements Step {
+    private final Step step;
+    private final String type;
 
-    void setNextHandler(Handler handler);
-}
-
-@Data
-class ConcreteHandler1 implements Handler {
-    private Handler nextHandler;
+    public StepImpl(String type, Step step) {
+        this.step = step;
+        this.type = type;
+    }
 
     @Override
-    public Handler handleRequest(Request request) {
-        if (request.getType().equals("Type1")) {
-            System.out.println("Request handled by ConcreteHandler1");
-        } else if (nextHandler != null) {
-            nextHandler.handleRequest(request);
-        } else {
-            System.out.println("End of chain. Request not handled.");
+    public void execute() {
+        System.out.println("Executing " + type);
+        // exit
+        if ("333".equals(type)) {
+            System.out.println("Executed successfully");
+            return;
         }
-        return this;
-    }
-}
-
-@Data
-class DefaultHandler implements Handler {
-    private Handler nextHandler;
-
-    @Override
-    public Handler handleRequest(Request request) {
-        System.out.println("Default hanler xxxxx");
-        return this;
-    }
-}
-
-@Data
-class ConcreteHandler2 implements Handler {
-    private Handler nextHandler;
-
-    @Override
-    public Handler handleRequest(Request request) {
-        if (request.getType().equals("Type2")) {
-            System.out.println("Request handled by ConcreteHandler2");
-        } else if (nextHandler != null) {
-            nextHandler.handleRequest(request);
-        } else {
-            System.out.println("End of chain. Request not handled.");
+        //next
+        if (null != step) {
+            step.execute();
         }
-        return this;
     }
 }
 
