@@ -1,0 +1,6 @@
+Predicate<T>    boolean test(T t);
+Consumer<T>     void accept(T t);
+Function<T,R>   R apply(T t);
+Supplier<T>     T get();
+UnaryOperator<T>
+BinaryOperator<T>
