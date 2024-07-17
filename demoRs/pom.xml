@@ -58,7 +58,7 @@
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
         </dependency>
-<!--        MYSQL end-->
+<!--        MYSQL end   -->
 
         <dependency>
             <groupId>org.projectlombok</groupId>

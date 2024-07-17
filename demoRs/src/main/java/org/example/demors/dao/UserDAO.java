@@ -1,15 +1,16 @@
 package org.example.demors.dao;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
 import org.example.demors.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 
 import java.util.List;
 
+@ApplicationScoped
 public class UserDAO {
     private final SessionFactory factory;
 
