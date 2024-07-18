@@ -42,6 +42,9 @@ public class MainResource {
     @Path("/err")
     @Produces(MediaType.TEXT_PLAIN)
     public Response error() {
-        return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
+        if (true) {
+            throw new RuntimeException("Under construction");
+        }
+        return Response.ok().build();
     }
 }
