@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: spring
+
+s3:
+  endpoint: http://localhost:4566
+  key: key123
+  secret: key345
+  location: eu-west-2
+  timeout: 30000
+  bucket: tiranosaur-bucket
