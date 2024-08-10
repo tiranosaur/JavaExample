@@ -26,7 +26,7 @@ public class UserRepo {
 
     @Transactional
     public List<User> getAll_query() {
-        return entityManager.createQuery("select u from User u", User.class).getResultList();
+        return entityManager.createQuery("select u from users u", User.class).getResultList();
     }
 
     @Transactional
@@ -49,7 +49,7 @@ public class UserRepo {
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
-                    users.add(new User(rs.getInt("id"), rs.getString("username"), rs.getString("email")));
+                    users.add(new User(rs.getLong("id"), rs.getString("name"), rs.getInt("age")));
                 }
                 connection.commit();
             } catch (SQLException e) {
