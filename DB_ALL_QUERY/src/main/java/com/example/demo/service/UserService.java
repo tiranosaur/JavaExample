@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
+import com.example.demo.model.UserSex;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepo;
 import com.example.demo.repository.UserRepository;
@@ -41,8 +42,8 @@ public class UserService {
             roleRepository.save(managerRole);
 
             List<User> userList = new ArrayList<>();
-            userList.add(new User(1L, "Alice", 25, List.of(managerRole, adminRole)));
-            userList.add(new User(2L, "Bob", 30, List.of(adminRole)));
+            userList.add(new User(1L, "Alice", 25, UserSex.WOMAN, List.of(managerRole, adminRole)));
+            userList.add(new User(2L, "Bob", 30, UserSex.MAN, List.of(adminRole)));
             userList.add(new User(3L, "Charlie", 28));
             userRepository.saveAll(userList);
         }

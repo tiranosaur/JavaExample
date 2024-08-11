@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.User;
+import com.example.demo.model.UserSex;
 import com.example.demo.util.JDBCUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -16,8 +17,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Repository
 public class UserRepo {

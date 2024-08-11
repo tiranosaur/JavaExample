@@ -1,8 +1,6 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +18,10 @@ public class User {
     private String name;
     private int age;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sex", nullable = false)
+    private UserSex userSex = UserSex.MAN;
+
     @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -29,7 +31,13 @@ public class User {
     )
     private List<Role> roleList = new ArrayList<>();
 
-    public User(Long id, String name, int age) {
+    public User(Long id, String name, int age, UserSex man) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    public User(long id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;

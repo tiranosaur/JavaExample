@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 @UtilityClass
 public class JDBCUtil {
-    private static final String URL = "jdbc:mysql://mysql-8.2:3306/demo_shema";
+    private static final String URL = "jdbc:mysql://mysql-8.2:3306/test";
     private static final String USER = "root";
     private static final String PASSWORD = "";
     private static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
