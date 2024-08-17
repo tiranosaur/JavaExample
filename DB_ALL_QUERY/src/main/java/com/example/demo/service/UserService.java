@@ -17,11 +17,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @Service
 public class UserService {
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final Random random = new Random();
     private final UserRepository userRepository;
     private final UserRepo userRepo;
     private final RoleRepository roleRepository;
@@ -66,18 +68,45 @@ public class UserService {
 
     @EventListener(ApplicationReadyEvent.class)
     public void applicationReady() {
+        System.out.println("\n\n\n-------------------------------------------");
+        System.out.println("\n\n\n===========================================");
+        System.out.println("\n\n\n-------------------------------------------");
+        test1();
+        System.out.println("\n\n\n===========================================");
+        test2();
+        System.out.println("\n\n\n===========================================");
+        test3();
+        System.out.println("\n\n\n===========================================");
+        test4();
+    }
+
+
+    private void test1() {
+        User user1 = new User(null, "slkdjf", 234);
+        User user2 = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        user2.setAge(random.nextInt());
+        userRepository.saveAll(List.of(user1, user2));
+        userRepository.delete(userRepository.getLast().get());
+    }
+
+    private void test2() {
         userRepository.deleteRole(1L, 1L);
         userRepository.insertRoles(1L, 1L);
+        User user3 = userRepository.findById(1L).get();
+        User user4 = userRepository.findById(2L).get();
+        log.info("user1: {}", user3);
+        log.info("user list: {}", new ArrayList<>(List.of(user3, user4)));
+    }
 
-        User user1 = userRepository.findById(1L).get();
-        User user2 = userRepository.findById(2L).get();
-        log.info("user1: {}", user1);
-        log.info("user list: {}", new ArrayList<>(List.of(user1, user2)));
-
+    private void test3() {
         log.info("222 [{}]", userRepository.getAllAnnotation());
         System.out.println("111" + userRepository.findAll());
         System.out.println("333" + userRepo.getAll_query());
         System.out.println("444" + userRepo.getAll_criteria());
         System.out.println("555" + userRepo.getAll_jdbc());
+    }
+
+    private void test4() {
+
     }
 }

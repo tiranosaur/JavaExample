@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -28,5 +29,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "delete from user_role where user_id = :user_id and role_id = :role_id", nativeQuery = true)
     void deleteRole(@Param("user_id") Long user_id, @Param("role_id") Long role_id);
 
-    User getUserById(Long id);
+    @Query(value = "select u from users u where u.id = (select max(id) from users)")
+    Optional<User> getLast();
 }
