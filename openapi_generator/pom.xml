@@ -97,6 +97,7 @@
                 </configuration>
             </plugin>
 
+            <!-- https://openapi-generator.tech/docs/generators/ -->
             <!-- https://openapi-generator.tech/docs/generators/java/ -->
             <plugin>
                 <groupId>org.openapitools</groupId>
