@@ -1,0 +1,768 @@
+openapi: 3.0.0
+info:
+  description: "Hello Service"
+  version: "1.0.0"
+  title: "org.test.spring.service"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "tiranosaur@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+servers:
+  - url: "/rest/org.test.spring.service.ExampleService"
+paths:
+  /konto:
+    post:
+      summary: getKonto
+      operationId: getKonto
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KontoFilterDTO'
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KontoDTOList'
+  /konto/get-short-details:
+    post:
+      summary: getKontoShortDetails
+      operationId: getKontoShortDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KontoRequestDTO'
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KontoDTO'
+  /konto/get-details:
+    post:
+      summary: getKontoDetails
+      operationId: getKontoDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KontoRequestDTO'
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KontoDTO'
+  /konto/update-field:
+    put:
+      summary: updateKontoField
+      operationId: updateKontoField
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KontoFieldRequestDTO'
+      responses:
+        200:
+          description: "successful operation"
+  /konto/amount:
+    get:
+      summary: getKontoAmountMap
+      operationId: getKontoAmountMap
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KontoAmountMap'
+  /konto/export-csv:
+    post:
+      summary: exportCSVKonto
+      operationId: exportCSVKonto
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KontoFilterDTO'
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+#  /konto/cache/clear:
+#    get:
+#      summary: clearKontoCache
+#      operationId: clearKontoCache
+#      responses:
+#        200:
+#          description: "successful operation"
+  /rechte/alle:
+    get:
+      summary: getRechteAlle
+      operationId: getRechteAlle
+      parameters:
+        - name: berechtigungen
+          in: query
+          required: true
+          description: "berechtigungen"
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KontoBerechtigungenDTO'
+  /feature-toggles:
+    get:
+      tags:
+        - FeatureToggle
+      summary: "getFeatureToggles"
+      operationId: "getFeatureToggles"
+      parameters:
+        - in: query
+          name: ftIds
+          description: One or more IDs
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+          examples:
+            oneId:
+              summary: Example of a single FeatureToogle ID
+              value: [firstId]   # ?ftIds=firstId
+            multipleIds:
+              summary: Example of multiple FeatureToogle IDs
+              value: [firstId, secondIds]   # ?ftIds=firstId,secondIds
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ROFeatureToggles'
+      deprecated: false
+  /filter:
+    put:
+      summary: updateFilter
+      operationId: updateFilter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomFilterDTO"
+      responses:
+        200:
+          description: "successful update filter"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFilterDTO'
+    get:
+      summary: getFilter
+      operationId: getFilter
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: "Filter id"
+          schema:
+            type: string
+      responses:
+        200:
+          description: "successful get filter"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFilterDTO'
+    post:
+      summary: createFilter
+      operationId: createFilter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomFilterDTO"
+      responses:
+        200:
+          description: "successful save filter"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFilterDTO'
+    delete:
+      summary: deleteFilter
+      operationId: deleteFilter
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: "Filter id"
+          schema:
+            type: string
+      responses:
+        200:
+          description: "successful delete filter"
+  /filter/list:
+    get:
+      summary: getFilters
+      operationId: getFilters
+      responses:
+        200:
+          description: "successful get all filter"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFilterDTOList'
+    put:
+      summary: updateFilters
+      operationId: updateFilters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomFilterDTOList'
+      responses:
+        200:
+          description: "successful update filters"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFilterDTOList'
+components:
+  schemas:
+    KontoRequestDTO:
+      type: object
+      properties:
+        kontonummer:
+          type: integer
+          format: int64
+        finanzInstitutBic:
+          type: string
+      required:
+        - kontonummer
+        - finanzInstitutBic
+    KontoFieldRequestDTO:
+      type: object
+      properties:
+        kontonummer:
+          type: integer
+          format: int64
+        finanzInstitutBic:
+          type: string
+        field:
+          $ref: '#/components/schemas/FieldEnum'
+        value:
+          type: string
+      required:
+        - kontonummer
+        - finanzInstitutBic
+        - field
+        - value
+    ROFeatureToggles:
+      title: ROFeatureToggles
+      type: object
+      additionalProperties:
+        type: boolean
+    KontoBerechtigungenDTO:
+      type: object
+      properties:
+        iban:
+          type: string
+        berechtigungen:
+          type: array
+          items:
+            type: string
+    KontoAmountMap:
+      type: object
+      additionalProperties:
+        type: string
+    KontoDTOList:
+      type: object
+      properties:
+        kontoDTOList:
+          type: array
+          items:
+            $ref: '#/components/schemas/KontoDTO'
+        totalSaldo:
+          type: double
+        pageSize:
+          type: integer
+        pageNumber:
+          type: integer
+        total:
+          type: integer
+        errorMessage:
+          type: string
+    KontoFilterDTO:
+      type: object
+      properties:
+        includeKontoArten:
+          type: array
+          items:
+            $ref: '#/components/schemas/KontoArt'
+        customFilter:
+          $ref: '#/components/schemas/CustomFilterDTO'
+        includeZeroSumAccounts:
+          type: boolean
+        includeNotActiveAccounts:
+          type: boolean
+        sortBy:
+          type: string
+          enum:
+            - ART
+            - IBAN
+            - KONTOBEZEICHNUNG
+            - SALDO
+            - FINANZINSTITUT
+            - INHABERNAME
+        sortOrder:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        freeTextSearch:
+          type: string
+        pageSize:
+          type: integer
+        pageNumber:
+          type: integer
+    KontoGroupType:
+      enum:
+        - FINANZ_INSTITUT
+        - PERSON
+        - KONTO_ART
+    KontoArt:
+      enum:
+        - AVAL
+        - KONTOKORRENT
+        - KREDIT_KARTE
+        - TAGESGELD
+        - TERMINEINLAGEN
+        - SPAREINLAGEN
+        - DARLEHEN
+        - GESCHAEFTSGUTHABEN
+        - DEPOT
+        - SONSTIGE
+    KontoUnterArt:
+      enum:
+        - AVAL
+        - WECHSEL
+        - DERIVATE
+        - FREMDWAEHRUNG
+    KontoAktualisierung:
+      enum:
+        - MANUELL
+        - AUTOMATISCH
+    UmsatzSammlerAnzeigeTyp:
+      enum:
+        - ZEIGE_KEINE
+        - ZEIGE_ALLE
+        - ZEIGE_ALLE_NUR__WENN_KEINE_GEHALTSBUCHUNG_VORHANDEN
+    KontoAklDaten:
+      type: object
+      properties:
+        mandantenId:
+          type: integer
+          format: int64
+        kontoIdent:
+          type: string
+        vertragsNummer:
+          type: string
+        autorisierungsKlasse:
+          type: integer
+          format: int64
+        temporaereAutorisierungsKlasse:
+          type: integer
+          format: int64
+        temporaereAutorisierungsKlasseGueltigBis:
+          type: string
+        temporaereAutorisierungsKlasseGueltigVon:
+          type: string
+        vertragsTyp:
+          type: string
+        aklDaten:
+          type: string
+        permanentesKennzeichenIndivParameter:
+          type: string
+        temporaeresKennzeichenIndivParameter:
+          type: string
+        waehrungCode:
+          type: integer
+          format: int64
+        vertragsgegenstandBezeichnung:
+          type: string
+          format: int64
+    KreditkartenDTO:
+      type: object
+      properties:
+        kartenArt:
+          type: string
+        karteninhaber:
+          type: string
+        verfallsdatum:
+          type: string
+          format: date-time
+        kundigungsdatum:
+          type: string
+          format: date-time
+        sperrdatum:
+          type: string
+          format: date-time
+        kreditkartennummer:
+          type: string
+        abrKontoBic:
+          type: string
+        abrKontoIban:
+          type: string
+    KontoDetailsTagesgeldDTO:
+      type: object
+      properties:
+        reihenfolgeNummer:
+          type: integer
+          format: int64
+        mindestBetrag:
+          type: double
+        zins:
+          type: double
+        zinsGarantiertBis:
+          type: string
+          format: date-time
+    KontoDTO:
+      type: object
+      properties:
+        mandantenId:
+          type: integer
+          format: int64
+        ident:
+          type: string
+        saldoZeit:
+          type: string
+          format: date-time
+        saldo:
+          type: double
+        waehrungCodeIsoAlpha:
+          type: string
+        art:
+          $ref: '#/components/schemas/KontoArt'
+        unterArt:
+          $ref: '#/components/schemas/KontoUnterArt'
+        iban:
+          type: string
+        nummer:
+          type: integer
+          format: int64
+        inhaberNameFBK:
+          type: string
+        inhaberName:
+          type: string
+        inhaberNummer:
+          type: string
+        produktName:
+          type: string
+        sparteCode:
+          type: integer
+          format: int64
+        letzteRefreshZeit:
+          type: string
+          format: date-time
+        gvsUsed:
+          type: array
+          items:
+            type: string
+        sichtbarAufStartseite:
+          type: boolean
+        sichtbarAufVermoegensuebersicht:
+          type: boolean
+        istFremdbankEntitaet:
+          type: boolean
+        krInhaberName:
+          type: string
+        krNummer:
+          type: string
+        krTyp:
+          type: string
+        ggAnzahlAnteile:
+          type: integer
+          format: int64
+        mitgliedsnummer:
+          type: integer
+          format: int64
+        monKapitalsaldo:
+          type: double
+        anzahlKuendigungen:
+          type: integer
+          format: int64
+        langbezeichnung:
+          type: string
+        zinsTilgungsleistungen:
+          type: double
+        datVertragsdatum:
+          type: string
+          format: date-time
+        vdtVertragsablaufLetzteRate:
+          type: string
+        monUrsprungsdarlehen:
+          type: double
+        monOffeneKreditzusage:
+          type: double
+        prcTilgungssatzUrsprung:
+          type: double
+        zinLangbezeichnung:
+          type: string
+        zahLangbezeichnung:
+          type: string
+        vdtNaechsteRateAm:
+          type: string
+        zahIbans:
+          type: array
+          items:
+            type: string
+        zahBics:
+          type: array
+          items:
+            type: string
+        monGenehmigteSondertilgung:
+          type: double
+        prcZinssatz:
+          type: double
+        vdtZinsbindungsende:
+          type: string
+        ggMitgliedSeit:
+          type: string
+          format: date-time
+        seZinsatzNominal:
+          type: double
+        daArt:
+          type: string
+        avArt:
+          type: string
+        avFaelligkeit:
+          type: string
+          format: date-time
+        deTyp:
+          type: string
+        deKontraktVolumen:
+          type: double
+        weBetrag:
+          type: double
+        weFaelligkeit:
+          type: string
+          format: date-time
+        fwWaehrungskurs:
+          type: double
+        aktualisierung:
+          $ref: '#/components/schemas/KontoAktualisierung'
+        istZahlungsverkehrsfaehig:
+          type: boolean
+        finanzInstitutIdent:
+          type: string
+        inhaberIdent:
+          type: string
+        istBusinessEditionKonto:
+          type: boolean
+        produktNummer:
+          type: integer
+          format: int64
+        name:
+          type: string
+        nameCustom:
+          type: string
+        useKontoArtForName:
+          type: boolean
+        umsatzSteuerungSammlerCode:
+          type: integer
+          format: int64
+        aklDaten:
+          $ref: '#/components/schemas/KontoAklDaten'
+        letzteSaldoAktualisierungZeit:
+          type: string
+          format: date-time
+        letzteDetailsAktualisierungZeit:
+          type: string
+          format: date-time
+        teFaelligAm:
+          type: string
+          format: date-time
+        teZinsatzNominal:
+          type: double
+        kkKreditLimit:
+          type: double
+        kkKreditLimitOnline:
+          type: double
+        kreditLimitAb:
+          type: string
+        kreditLimitBis:
+          type: string
+        versandart:
+          type: string
+        ueberziehungszins:
+          type: double
+        abrechnungszeitraum:
+          type: string
+        kontofuehrungsGebuehr:
+          type: double
+        finanzInstitutName:
+          type: string
+        finanzInstitutBic:
+          type: string
+        saldoEuro:
+          type: double
+        kursDatum:
+          type: string
+          format: date-time
+        kursTimestamp:
+          type: string
+          format: date-time
+        displayName:
+          type: string
+        umsatzSammlerAnzeigeTyp:
+          $ref: '#/components/schemas/UmsatzSammlerAnzeigeTyp'
+        istAgreeKonto:
+          type: boolean
+        zinssatzNominal:
+          type: double
+        faelligAm:
+          type: string
+          format: date-time
+        zinsatzNominal:
+          type: double
+        dokumenteVersandart:
+          type: string
+        vertragsbeginn:
+          type: string
+          format: date-time
+        erhoehungsZinssatz:
+          type: double
+        erhoehungsZinssatzGueltigAb:
+          type: string
+          format: date-time
+        erhoehungsZinssatzGueltigBis:
+          type: string
+          format: date-time
+        zinssatzrythmus:
+          type: string
+        naechsterZinstermin:
+          type: string
+          format: date-time
+        zinsVerwendungsKennzeichen:
+          type: integer
+          format: int64
+        zinsGutschriftsKontoIban:
+          type: string
+        zinsGutschriftsKontoName:
+          type: string
+        istBarauszahlung:
+          type: boolean
+        gutschriftsKontoIban:
+          type: string
+        gutschriftsKontoName:
+          type: string
+        belastungsKontoIban:
+          type: string
+        belastungsKontoName:
+          type: string
+        limit1:
+          type: double
+        limit2:
+          type: double
+        verufgbarerBetrag:
+          type: double
+        kundigungsfrist:
+          type: integer
+          format: int64
+        kreditLimitBefristetBis:
+          type: string
+        datZulassungBeitrittAm:
+          type: string
+          format: date-time
+        kreditkartens:
+          type: array
+          items:
+            $ref: "#/components/schemas/KreditkartenDTO"
+        zinsKonditition:
+          type: array
+          items:
+            $ref: "#/components/schemas/KontoDetailsTagesgeldDTO"
+        isFremdbank:
+          type: boolean
+        fremdbankMandantenId:
+          type: integer
+          format: int64
+        ergaenzungsnameKontoinhaber:
+          type: string
+        errorMessage:
+          type: string
+    FilterConditionDTO:
+      type: object
+      properties:
+        filterConditionType:
+          type: string
+          enum:
+              - SALDO
+              - SEARCH
+              - ART
+        value:
+          type: array
+          items:
+            type: string
+        equalType:
+          type: string
+          enum:
+              - EQUAL
+              - LESS
+              - MORE
+              - LESS_OR_EQUAL
+              - MORE_OR_EQUAL
+    CustomFilterDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterConditionDTO'
+        allConditions:
+          type: boolean
+        name:
+          type: string
+    CustomFilterDTOList:
+      properties:
+        customFilters:
+          type: array
+          nullable: false
+          items:
+            $ref: '#/components/schemas/CustomFilterDTO'
+    FieldEnum:
+      type: string
+      enum:
+        - KONTOBEZEICHNUNG
