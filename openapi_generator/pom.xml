@@ -97,11 +97,31 @@
                 </configuration>
             </plugin>
 
+            <!-- https://openapi-generator.tech/docs/generators/java/ -->
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>6.4.0</version>
                 <executions>
+                    <execution>
+                        <id>generate-angular-api-v1</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>   <!--  !!! -->
+                            <generatorName>typescript-angular</generatorName>
+                            <configOptions>
+                                <ngVersion>15.0.0</ngVersion>
+                                <!--                                <npmName>@${openapi.package}.organisationServiceContract</npmName>-->
+                                <npmVersion>0.0.${maven.build.timestamp}</npmVersion>
+                                <useSpringBoot3>true</useSpringBoot3>
+                            </configOptions>
+
+                            <output>${project.basedir}/target/frontend-generated</output>
+                        </configuration>
+                    </execution>
                     <execution>
                         <goals>
                             <goal>generate</goal>
