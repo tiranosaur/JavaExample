@@ -1,9 +1,0 @@
-.openapi-generator-ignore
-README.md
-org/test/spring/api/ApiUtil.java
-org/test/spring/api/HelloApi.java
-org/test/spring/api/ViewApi.java
-org/test/spring/model/HelloDTO.java
-org/test/spring/model/View.java
-org/test/spring/model/ViewDTO.java
-pom.xml
