@@ -8,7 +8,6 @@ import com.example.demo.repository.PostRepository;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepo;
 import com.example.demo.repository.UserRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -66,13 +65,13 @@ public class UserService {
 
 
     @EventListener(ApplicationReadyEvent.class)
-    public void applicationReady() throws JsonProcessingException {
+    public void applicationReady() {
         userRepository.deleteRole(1L, 1L);
         userRepository.insertRoles(1L, 1L);
 
         User user1 = userRepository.findById(1L).get();
         User user2 = userRepository.findById(2L).get();
-        log.info("user1: {}", objectMapper.writeValueAsString(user1));
+        log.info("user1: {}", user1);
         log.info("user list: {}", new ArrayList<>(List.of(user1, user2)));
 
         log.info("222 [{}]", userRepository.getAllAnnotation());
