@@ -31,13 +31,26 @@ public class User {
     )
     private List<Role> roleList = new ArrayList<>();
 
-    public User(Long id, String name, int age, UserSex man) {
+    @JsonManagedReference
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Post post;
+
+    public User(Long id, String name, int age, UserSex userSex) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.userSex = userSex;
     }
 
-    public User(long id, String name, int age) {
+    public User(Long id, String name, int age, UserSex userSex, List<Role> roleList) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.userSex = userSex;
+        this.roleList = roleList;
+    }
+
+    public User(Long id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
