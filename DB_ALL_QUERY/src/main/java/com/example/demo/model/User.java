@@ -2,10 +2,13 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -13,9 +16,11 @@ import java.util.List;
 @Entity(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    private String username;
+
     private int age;
 
     @Enumerated(EnumType.STRING)
@@ -26,33 +31,47 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
+            // foreign key need for on delete cascade (DatabaseSetupConfig)
+            joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_user")),
+            // foreign key need for on delete cascade (DatabaseSetupConfig)
+            inverseJoinColumns = @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_role"))
     )
     private List<Role> roleList = new ArrayList<>();
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
     private Post post;
 
-    public User(Long id, String name, int age, UserSex userSex) {
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    private List<UserComment> userCommentList = new ArrayList<>();
+
+    public User(UUID id, String name, int age, UserSex userSex) {
         this.id = id;
-        this.name = name;
+        this.username = name;
         this.age = age;
         this.userSex = userSex;
     }
 
-    public User(Long id, String name, int age, UserSex userSex, List<Role> roleList) {
+    public User(UUID id, String name, int age, UserSex userSex, List<Role> roleList) {
         this.id = id;
-        this.name = name;
+        this.username = name;
         this.age = age;
         this.userSex = userSex;
         this.roleList = roleList;
     }
 
-    public User(Long id, String name, int age) {
+    public User(UUID id, String name, int age) {
         this.id = id;
-        this.name = name;
+        this.username = name;
         this.age = age;
     }
 }

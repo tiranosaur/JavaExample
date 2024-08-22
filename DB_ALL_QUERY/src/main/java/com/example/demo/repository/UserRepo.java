@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.User;
-import com.example.demo.model.UserSex;
 import com.example.demo.util.JDBCUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -11,12 +10,15 @@ import jakarta.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.nio.ByteBuffer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class UserRepo {
@@ -37,7 +39,7 @@ public class UserRepo {
         return entityManager.createQuery(cq).getResultList();
     }
 
-    public List<User> getAll_jdbc() {
+    public Collection<User> getAll_jdbc() {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM users";
 
@@ -48,7 +50,10 @@ public class UserRepo {
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
-                    users.add(new User(rs.getLong("id"), rs.getString("name"), rs.getInt("age")));
+                    byte[] idBytes = rs.getBytes("id");
+                    ByteBuffer byteBuffer = ByteBuffer.wrap(idBytes);
+                    UUID id = new UUID(byteBuffer.getLong(), byteBuffer.getLong());
+                    users.add(new User(id, rs.getString("username"), rs.getInt("age")));
                 }
                 connection.commit();
             } catch (SQLException e) {

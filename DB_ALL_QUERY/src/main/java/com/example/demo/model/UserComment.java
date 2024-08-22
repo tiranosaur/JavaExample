@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,23 +12,21 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "posts")
-public class Post {
+@Entity(name = "user_comment")
+public class UserComment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false)
     private UUID id;
 
-    @Column(nullable = false)
-    private String title;
+    private String comment;
 
-    @JsonBackReference
-    @JoinColumn
-    @OneToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     @Override
     public String toString() {
-        return "{\"id\"=" + id + ", \"title\"=\"" + title + "\"}";
+        return "fuck";
     }
 }

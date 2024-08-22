@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -15,15 +16,16 @@ import java.util.List;
 @Entity(name = "roles")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
     private String name;
 
     @JsonBackReference
     @ManyToMany(mappedBy = "roleList", fetch = FetchType.EAGER)
     private List<User> userList = new ArrayList<>();
 
-    public Role(Long id, String name) {
+    public Role(UUID id, String name) {
         this.id = id;
         this.name = name;
     }
