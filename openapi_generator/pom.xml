@@ -129,9 +129,6 @@
                         </goals>
                         <configuration>
                             <configHelp>false</configHelp>
-                            <configOptions>
-                                <useJakartaEe>true</useJakartaEe>
-                            </configOptions>
                             <inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>   <!--  !!! -->
                             <generatorName>spring</generatorName>
                             <output>${project.basedir}/generated-sources/openapi</output>
