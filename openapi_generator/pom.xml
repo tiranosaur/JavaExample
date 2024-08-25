@@ -136,6 +136,7 @@
                             <modelPackage>org.test.spring.model</modelPackage>
                             <invokerPackage>org.test.spring.base</invokerPackage>
                             <configOptions>
+                                <openApiNullable>false</openApiNullable>   <!--  fix nullable error -->
                                 <useJakartaEe>true</useJakartaEe>           <!--  jakarta -->
                                 <interfaceOnly>true</interfaceOnly>
                                 <serializableModel>true</serializableModel>
