@@ -1,0 +1,18 @@
+services:
+  test-container:
+    container_name: graylog_demo_spring-container
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+    logging:
+      driver: gelf
+      options:
+        #        gelf-address: udp://localhost:12201
+        gelf-address: udp://172.31.0.4:12201 # docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' graylog_demo_graylog
+#    depends_on:
+#      - graylog
+#    networks:
+#      - graylog_network

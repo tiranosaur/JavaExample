@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: graylog
+
+server:
+  port: 8080
+
+logging:
+  port: 1201
