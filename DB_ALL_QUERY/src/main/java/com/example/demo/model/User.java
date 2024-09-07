@@ -2,16 +2,18 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
+@Builder(setterPrefix = "set")
 @NoArgsConstructor
 @Entity(name = "users")
 public class User {
@@ -19,16 +21,37 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "username")
     private String username;
 
+    @Column(name = "age")
     private int age;
+
+    @Column(
+            name = "created_at",
+            nullable = false,
+            updatable = false,
+            insertable = false,
+            columnDefinition = "TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP"
+    )
+    @CreationTimestamp
+    private Timestamp createdAt;
+
+    @Column(
+            name = "updated_at",
+            nullable = false,
+            insertable = false,
+            columnDefinition = "TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    )
+    @UpdateTimestamp
+    private Timestamp updatedAt;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "sex", nullable = false)
-    private UserSex userSex = UserSex.MAN;
+    private UserSex sex = UserSex.MAN;
 
     @JsonManagedReference
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_role",
             // foreign key need for on delete cascade (DatabaseSetupConfig)
@@ -36,38 +59,19 @@ public class User {
             // foreign key need for on delete cascade (DatabaseSetupConfig)
             inverseJoinColumns = @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_role"))
     )
+    @Builder.Default
     private List<Role> roleList = new ArrayList<>();
 
-    @JsonManagedReference
-    @OneToOne(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "line_first_user",
+            // foreign key need for on delete cascade (DatabaseSetupConfig)
+            joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_line_first_user_id")),
+            // foreign key need for on delete cascade (DatabaseSetupConfig)
+            inverseJoinColumns = @JoinColumn(name = "line_id", foreignKey = @ForeignKey(name = "fk_first_line_id_user"))
     )
-    private Post post;
-
-    @JsonManagedReference
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    private List<UserComment> userCommentList = new ArrayList<>();
-
-    public User(UUID id, String name, int age, UserSex userSex) {
-        this.id = id;
-        this.username = name;
-        this.age = age;
-        this.userSex = userSex;
-    }
-
-    public User(UUID id, String name, int age, UserSex userSex, List<Role> roleList) {
-        this.id = id;
-        this.username = name;
-        this.age = age;
-        this.userSex = userSex;
-        this.roleList = roleList;
-    }
+    @Builder.Default
+    private List<LineFirst> lineFirstList = new ArrayList<>();
 
     public User(UUID id, String name, int age) {
         this.id = id;

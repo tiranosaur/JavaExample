@@ -22,8 +22,9 @@ public class Role {
     private String name;
 
     @JsonBackReference
-    @ManyToMany(mappedBy = "roleList", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "roleList")
     private List<User> userList = new ArrayList<>();
+
 
     public Role(UUID id, String name) {
         this.id = id;
