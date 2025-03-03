@@ -1,0 +1,25 @@
+1.
+    ALTER SYSTEM SET wal_level = logical;
+    SELECT pg_reload_conf();
+    CREATE PUBLICATION debezium_pub FOR ALL TABLES;
+
+2.
+    CREATE TABLE worker.romanoff_test_test_test_test_test_test_test_test_test_test
+    (
+        id    SERIAL PRIMARY KEY,
+        name  VARCHAR(255),
+        email VARCHAR(255)
+    );
+
+3.
+    curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" \
+    --data @debezium-config.json http://localhost:8083/connectors
+
+4.
+    INSERT INTO worker.romanoff_test_test_test_test_test_test_test_test_test_test (id, name, email)
+    VALUES (1, 'Natasha Romanoff', 'natasha@example.com'),
+           (2, 'Tony Stark', 'tony@example.com'),
+           (3, 'Steve Rogers', 'steve@example.com'),
+           (4, 'Bruce Banner', 'bruce@example.com'),
+           (5, 'Thor Odinson', 'thor@example.com');
+

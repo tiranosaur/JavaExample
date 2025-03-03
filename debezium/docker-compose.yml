@@ -1,0 +1,127 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "doadmin"
+      POSTGRES_USER: "doadmin"
+#      POSTGRES_DB: "defaultdb"
+    volumes:
+#      - ./init_users.sql:/docker-entrypoint-initdb.d/db.sql
+      - ~/apps/postgres-16-patrianna-local:/var/lib/postgresql/data
+    networks:
+      - local-net
+
+  redis:
+    image: redis:7.0.12
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ~/apps/redis-7.0.12-patrianna-local:/data
+    restart: always
+    networks:
+      - local-net
+
+  zookeeper:
+    image: bitnami/zookeeper:3.9.1
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: yes
+    volumes:
+      - ~/apps/postgres-16-patrianna-local:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - local-net
+
+  kafka:
+    image: bitnami/kafka:3.6.1
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      ALLOW_PLAINTEXT_LISTENER: 'yes'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_CFG_ZOOKEEPER_CONNECT: zookeeper:2181
+    command: /bin/bash -c "sleep 5 && /opt/bitnami/scripts/kafka/run.sh"
+    restart: always
+    networks:
+      - local-net
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    depends_on:
+      - kafka
+      - zookeeper
+    container_name: kafka-ui
+    ports:
+      - "8086:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: "local"
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka:9092"
+      KAFKA_CLUSTERS_0_ZOOKEEPER: "zookeeper:2181"
+    networks:
+      - local-net
+
+  spanner:
+    image: gcr.io/cloud-spanner-emulator/emulator
+    container_name: spanner
+    ports:
+      - "9010:9010"
+      - "9020:9020"
+    networks:
+      - local-net
+
+  spanner-init:
+    image: google/cloud-sdk:465.0.0-slim
+    depends_on:
+      - spanner
+    command: >
+      bash -c 'gcloud config configurations create emulator &&
+              gcloud config set auth/disable_credentials true &&
+              gcloud config set project $${PROJECT_ID} &&
+              gcloud config set api_endpoint_overrides/spanner $${SPANNER_EMULATOR_URL} &&
+              gcloud config set auth/disable_credentials true &&
+              gcloud spanner instances create $${INSTANCE_NAME} --config=emulator-config --description=Emulator --nodes=1'
+    environment:
+      PROJECT_ID: "test-project"
+      SPANNER_EMULATOR_URL: "http://spanner:9020/"
+      INSTANCE_NAME: "test-instance"
+      DATABASE_NAME: "test-database"
+    networks:
+      - local-net
+
+  debezium:
+    image: debezium/connect:2.3
+    container_name: debezium
+    depends_on:
+      - kafka
+      - postgres
+    ports:
+      - "8083:8083"
+    environment:
+      BOOTSTRAP_SERVERS: "kafka:9092"
+      GROUP_ID: "debezium"
+      CONFIG_STORAGE_TOPIC: "connect-configs"
+      OFFSET_STORAGE_TOPIC: "connect-offsets"
+      STATUS_STORAGE_TOPIC: "connect-status"
+      KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "debezium"
+    networks:
+      - local-net
+
+networks:
+  local-net:
+    driver: bridge

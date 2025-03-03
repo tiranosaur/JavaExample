@@ -1,0 +1,17 @@
+{
+  "name": "inventory-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "app_owner",
+    "database.password": "app_owner",
+    "database.dbname": "defaultdb",
+    "database.server.name": "postgres",
+    "plugin.name": "pgoutput",
+    "publication.autocreate.mode": "filtered",
+    "slot.name": "debezium_slot",
+    "topic.prefix": "db-changes",
+    "table.include.list": "worker.romanoff_test_test_test_test_test_test_test_test_test_test"
+  }
+}
