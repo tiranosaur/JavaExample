@@ -23,3 +23,8 @@
            (4, 'Bruce Banner', 'bruce@example.com'),
            (5, 'Thor Odinson', 'thor@example.com');
 
+
+
+check config
+    curl -i -X GET -H "Accept:application/json" localhost:8083/connectors/inventory-connector
+
